@@ -1,0 +1,9 @@
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Dependências do Node.js
+/node_modules
+
+# Arquivos de build do React
+/build
