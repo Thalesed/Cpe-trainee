@@ -23,14 +23,13 @@ const Carrossel = () => {
     <div>
     <div className="carousel-container">
         <div className="carousel">
-            <img src={`${images[indexAtual]}`} alt={`Imagem ${indexAtual}`} />
+            <img src={imagens['cpe']} alt={`Imagem ${indexAtual}`} />
         </div>
 
         <div className="carousel-control left" onClick={voltaImagem}>&lt;</div>
         <div className="carousel-control right" onClick={proxImagem}>&gt;</div>
     </div>
 
-    <div className="central-box"></div>
     </div>
   );
 };

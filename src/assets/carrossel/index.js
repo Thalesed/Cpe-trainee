@@ -1,11 +1,13 @@
 // projeto/src/assets/carrossel/index.js
 
-function importAll(r) {
-  let imagens = {};
-  r.keys().map((item, index) => { imagens[item.replace('./', '')] = r(item); });
-  return imagens;
-}
+const imagens = {};
 
-const imagens = importAll(require.context('./', false, /\.(png|jpe?g|svg)$/));
+// Importa todas as imagens do diretório
+const arquivosImagens = require.context('./', false, /\.(png|jpe?g|svg)$/);
+arquivosImagens.keys().forEach((caminhoArquivo) => {
+  const nomeImagem = caminhoArquivo.replace(/^\.\/(.*)\.\w+$/, '$1');
+  imagens[nomeImagem] = arquivosImagens(caminhoArquivo).default;
+});
 
 export default imagens;
+
