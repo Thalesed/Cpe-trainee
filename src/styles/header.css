@@ -1,0 +1,14 @@
+header{
+    background-color: gold;
+}
+
+.App-logo-lampada{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 0;
+}
+.image-container {
+    display: flex;
+    gap: 2px; /* Define o espaçamento entre as imagens */
+}
