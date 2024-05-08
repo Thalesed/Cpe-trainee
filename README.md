@@ -1,8 +1,8 @@
 # Cpe-trainee
 
-# Instalar Dependencias
-´´ńpm install´´´
+## Instalar Dependencias
+```npm install```
 
-# Rodar 
-´´ńpm start´´´
+## Rodar 
+```npm start```
 
