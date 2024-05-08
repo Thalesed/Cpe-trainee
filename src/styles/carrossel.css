@@ -1,0 +1,39 @@
+.carousel-container {
+    position: relative;
+    width: 600px; /* Defina a largura desejada */
+    margin: 0 auto; /* Centraliza horizontalmente */
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+  }
+
+  .carousel-control.left {
+    left: 0;
+  }
+
+  .carousel-control.right {
+    right: 0;
+  }
+
+  /* Estilos CSS para a caixa central */
+  .central-box {
+    width: 250px;
+    height: 200px;
+    background-color: #ccc;
+    margin: 5px auto;
+  }

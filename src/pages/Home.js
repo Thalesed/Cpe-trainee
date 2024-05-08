@@ -1,14 +1,16 @@
 // src/pages/Home.js
 
 import React from 'react';
-import Header from '../pages/Header';
+import Header from '../components/Header';
+import Carrossel from '../components/Carrossel';
+import Login from '../components/Login'
 
 const Home = () => {
   return (
     <div>
         <Header />
-        <h1>Bem-vindo à Página Inicial</h1>
-        <p>Página de pontos.</p>
+        <Carrossel />
+        <Login />
     </div>
   );
 };
