@@ -1,21 +1,36 @@
 // src/components/Carrossel.js
 
 import React from 'react';
+import imagens from '../assets/carrossel';
 import '../styles/carrossel.css';
+import { useState } from 'react';
 
 const Carrossel = () => {
+    const [indexAtual, setIndexAtual] = useState(0);
+    const [images, setImages] = useState(imagens);
+
+    function voltaImagem(){
+        setIndexAtual(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+        console.log(images);
+    }
+
+    function proxImagem(){
+        setIndexAtual(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    }
+
+
   return (
     <div>
-    <div class="carousel-container">
-        <div class="carousel">
-            {/* Imagens */}
+    <div className="carousel-container">
+        <div className="carousel">
+            <img src={`${images[indexAtual]}`} alt={`Imagem ${indexAtual}`} />
         </div>
 
-        <div class="carousel-control left">&lt;</div>
-        <div class="carousel-control right">&gt;</div>
+        <div className="carousel-control left" onClick={voltaImagem}>&lt;</div>
+        <div className="carousel-control right" onClick={proxImagem}>&gt;</div>
     </div>
 
-    <div class="central-box"></div>
+    <div className="central-box"></div>
     </div>
   );
 };
