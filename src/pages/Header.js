@@ -1,16 +1,17 @@
-// src/components/Header.js
+// src/pages/Header.js
 
 import React from 'react';
+import '../styles/header.css';
+import logo from '../assets/cpe_logo.svg';
+import lampada from '../assets/lampada.svg';
 
 const Header = () => {
   return (
     <header>
-      <h1>CPE</h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-        </ul>
-      </nav>
+        <div className="image-container">
+            <img src={lampada} className="App-logo-lampada" alt="lampada" />
+            <img src={logo} className="App-logo" alt="logo" />
+        </div>
     </header>
   );
 };
