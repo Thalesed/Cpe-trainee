@@ -4,35 +4,34 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import cpe from '../assets/carrossel/cpe.png';
 import '../styles/carrossel.css';
-
-import { useEffect, useState } from 'react';
+import { importAll } from '../utils/imageImporter'; // script para importar todas as imagens
 
 const Carousel = () => {
+    // importando imagens .PNG .JP?G e .SVG
+    const images = importAll(require.context('../assets/carrossel', false, /\.(png|jpe?g|svg)$/));
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1, // Quantidade de itens visíveis ao mesmo tempo
+    slidesToShow: 1, 
     slidesToScroll: 1,
     autoplay: true,
     autoplayspeed: 4000
   };
+  
 
   return (
+    // Carrossel/Slide com a biblioteca React-Slick
     <div className="slideBox">
     <Slider {...settings}>
-      <div>
-        <img src={cpe} alt="Imagem 1" />
-      </div>
-      <div>
-        <img src="imagem2.jpg" alt="Imagem 2" />
-      </div>
-      <div>
-        <img src="imagem3.jpg" alt="Imagem 3" />
-      </div>
-      {/* Adicione mais itens conforme necessário */}
+        {/*Adiciona todas as imagens do diretorio src/assets/carrossel */}
+        {Object.entries(images).map(([imageName, imageUrl]) => (
+            <div key={imageName}>
+                <img src={imageUrl} alt={imageName} />
+            </div>
+        ))}
     </Slider>
     </div>
   );
