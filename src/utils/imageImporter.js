@@ -6,7 +6,6 @@ export const importAll = (r) => {
   return images;
 }
 
-const images = importAll(require.context('../assets/carrossel', false, /\.(png|jpe?g|svg)$/));
 
 
 
