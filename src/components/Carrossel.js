@@ -1,37 +1,41 @@
 // src/components/Carrossel.js
 
 import React from 'react';
-import imagens from '../assets/carrossel';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import cpe from '../assets/carrossel/cpe.png';
 import '../styles/carrossel.css';
-import { useState } from 'react';
 
-const Carrossel = () => {
-    const [indexAtual, setIndexAtual] = useState(0);
-    const [images, setImages] = useState(imagens);
+import { useEffect, useState } from 'react';
 
-    function voltaImagem(){
-        setIndexAtual(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-        console.log(images);
-    }
-
-    function proxImagem(){
-        setIndexAtual(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    }
-
+const Carousel = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1, // Quantidade de itens visíveis ao mesmo tempo
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplayspeed: 4000
+  };
 
   return (
-    <div>
-    <div className="carousel-container">
-        <div className="carousel">
-            <img src={imagens['cpe']} alt={`Imagem ${indexAtual}`} />
-        </div>
-
-        <div className="carousel-control left" onClick={voltaImagem}>&lt;</div>
-        <div className="carousel-control right" onClick={proxImagem}>&gt;</div>
-    </div>
-
+    <div className="slideBox">
+    <Slider {...settings}>
+      <div>
+        <img src={cpe} alt="Imagem 1" />
+      </div>
+      <div>
+        <img src="imagem2.jpg" alt="Imagem 2" />
+      </div>
+      <div>
+        <img src="imagem3.jpg" alt="Imagem 3" />
+      </div>
+      {/* Adicione mais itens conforme necessário */}
+    </Slider>
     </div>
   );
 };
 
-export default Carrossel;
+export default Carousel;
