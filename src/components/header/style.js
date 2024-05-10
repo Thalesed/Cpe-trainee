@@ -4,11 +4,11 @@ export const HeaderStyle = styled.header`
     display: flex;
     align-items: center;
     background-color: gold;
-    max-height: 100px;
+    max-height: 100px; 
 `;
 
-export const Logo = styled.image`
-    width: 60px;
-    height: 60px;
+.App-logo {
+    width: 120px;
+    height: 120px;
     padding: 5px auto;
-`;
+}
