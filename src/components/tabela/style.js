@@ -9,18 +9,17 @@ export const TabelaBox = styled.div`
     border: 2px solid #000000;
     background-color: rgb(77, 71, 71);
     overflow: hidden;
-`;
+    .TabelaBox .titulo{
+        color: black;
+        background-color: gold;
+        width: auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 50px;
+    }
 
-export const TabelaTitulo = styled.div`
-   color: black;
-    background-color: gold;
-    width: auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 50px;
-`;
-
-export const TabelaH = styled.h3`
-   margin-left: 0 auto;
+    .TabelaBox .titulo h3{
+        margin-left: 0 auto;
+    }
 `;
 
