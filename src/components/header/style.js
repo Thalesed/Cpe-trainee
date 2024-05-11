@@ -5,10 +5,12 @@ export const HeaderStyle = styled.header`
     align-items: center;
     background-color: gold;
     max-height: 100px; 
-`;
 
-.App-logo {
+    .App-logo {
     width: 120px;
     height: 120px;
     padding: 5px auto;
 }
+`;
+
+
