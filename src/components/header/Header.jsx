@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <HeaderStyle>
     <header>
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} alt="logo" />
     </header>
     </HeaderStyle>
   );
