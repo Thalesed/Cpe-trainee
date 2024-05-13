@@ -1,5 +1,20 @@
 import styled from "styled-components"
 
+export var alturaJanela = window.innerHeight;
+
+
+export const HeaderStyle1 = styled.header`
+    display: flex;
+    align-items: center;
+    background-color: gold;
+    max-height: 100px; 
+
+    @media (max-width: 300px){
+        max-height: 60px; 
+    }
+
+`;
+
 export const InputStyle = styled.input`
     height: 40px;
     width: 50%;
@@ -11,7 +26,12 @@ export const InputStyle = styled.input`
     padding-left: 20px;
     font-weight: bold;
     font-size: 1rem;
- 
+    
+        @media (max-width: 300px){
+            height: 30px;
+            font-size: 0.7rem;
+        }
+
 `;
 
 export const DivInput = styled.div`
@@ -19,8 +39,16 @@ export const DivInput = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: 60px;
+    margin-top: ${alturaJanela * 0.08}px;
 
+    @media (max-width: 300px){
+        height: 7px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: ${alturaJanela * 0.08}px;
+
+    }
 `;
 
 export const TituloC = styled.div`
@@ -30,6 +58,15 @@ export const TituloC = styled.div`
     font-size: 2.7rem;
     color: gold;
     text-align: center;
+
+@media (max-width: 300px){
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: gold;
+    text-align: center;
+}
     
 `;
 
@@ -41,9 +78,22 @@ export const Botão = styled.button`
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
-    margin-top: 50px;
-    border-radius: 27px;
+    margin-top: 0px;
+    border-radius: 17px;
     margin: auto;
+
+    @media (max-width: 300px){
+        height: 35px;
+        width: 120px;
+        color: black;
+        background-color: gold;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 0px;
+        border-radius: 17px;
+        margin: auto;
+    }
 
 `;
 
@@ -53,7 +103,19 @@ export const Fundo = styled.image`
     opacity: 70%;
 `;
 
-export const Voltar = styled.image `
-    margin-top: 5px;
-    margin-right: 20px;
+
+
+export const Voltar = styled.button`
+    height: 50px;
+    width: 50px;
+    background-color: gold;
+    border-color: black;
+    border-radius: 100%;
+    display: flex;
+    margin-right: 1px;
+    margin-top: 0px;
+    font-size: 2rem;
+    //padding: auto;
+
+
 `
