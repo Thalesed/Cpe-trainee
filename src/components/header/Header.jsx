@@ -7,7 +7,8 @@ const Header = () => {
   return (
     <HeaderStyle>
     <header>
-        <img src={logo} alt="logo" />
+        <img className="cpe-logo" src={logo} alt="logo" />
+        <a href="/cadastro">Cadastro</a>
     </header>
     </HeaderStyle>
   );

@@ -4,13 +4,19 @@ export const HeaderStyle = styled.header`
     display: flex;
     align-items: center;
     background-color: gold;
-    max-height: 100px; 
+    max-height: 70px; 
 
-    .App-logo {
-    width: 120px;
-    height: 120px;
+    .cpe-logo {
+    width: 140px;
+    height: 140px;
     padding: 5px auto;
+    margin: 0 auto;
 }
+
+    a{
+        text-align: right;
+        margin: 0 auto;
+    }
 `;
 
 
