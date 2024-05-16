@@ -71,7 +71,7 @@ export const TituloL = styled.div`
 `;
 //Botão Entrar
 export const Botão = styled.button`
-    height: 50px;
+  height: 50px;
     width: 200px;
     color: black;
     background-color: gold;
@@ -81,8 +81,9 @@ export const Botão = styled.button`
     margin-top: 0px;
     border-radius: 17px;
     margin: auto;
+    
 
-    @media (max-width: 300px){
+    @media (max-width: 280px){
         height: 35px;
         width: 120px;
         color: black;
@@ -118,4 +119,35 @@ export const Voltar = styled.button`
     //padding: auto;
 
 
-`
+`;
+
+export const divt = styled.div `
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+`;
+
+//NÃO TEM CONTA? FAÇA AQUI...
+export const Container = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-between;
+  min-height: 100vh;
+  text-align: center;
+  padding: 0 20px;
+
+  @media (max-width:280px) {
+ padding:0 10px;
+
+  }
+`;
+export const HighlightLink = styled.span`
+  color: yellow; /* Destaca a palavra "aqui" em amarelo */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  text-decoration: none; /* Remove o sublinhado padrão */
+  
+  &:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+  }
+`;
