@@ -8,7 +8,7 @@ import BotaoVoltarCadastro from "../../components/botão/botaoVoltar"
 const Cadastro = () =>{
     return(
         <>
-        <TituloCadastro/>
+        <TituloCadastro tituloStr="cadastrar"/>
         <Input x='E-mail'/>
         <Input x='Senha'/>
         <Input x='Nome'/>

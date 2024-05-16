@@ -1,11 +1,11 @@
 import React from 'react';
 import { TituloC } from '../../pages/Cadastro/style';
 
-const TituloCadastro = () => {
+const TituloCadastro = ({tituloStr}) => {
     return (
         <>
         <TituloC>
-            cadastro
+            {tituloStr}
         </TituloC>
         
         </>
