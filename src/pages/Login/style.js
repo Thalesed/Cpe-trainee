@@ -1,23 +1,15 @@
 import styled from "styled-components"
 
+
 export var alturaJanela = window.innerHeight;
 
 
-export const HeaderStyle1 = styled.header`
-    display: flex;
-    align-items: center;
-    background-color: gold;
-    max-height: 100px; 
 
-    @media (max-width: 300px){
-        max-height: 60px; 
-    }
-
-`;
-
-export const InputStyle = styled.input`
-    height: 40px;
-    width: 50%;
+//email e senha estilizado
+export const Input = styled.input`
+   height: 40px;
+   justify-content: space-between;
+    width: 100%;
     display: flex;
     align-items: center;
     border: solid;
@@ -27,37 +19,32 @@ export const InputStyle = styled.input`
     font-weight: bold;
     font-size: 1rem;
     
-        @media (max-width: 300px){
+        @media (max-width: 280px){
             height: 30px;
             font-size: 0.7rem;
         }
 
 `;
 
-export const DivInput = styled.div`
-    height: 10px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-top: ${alturaJanela * 0.08}px;
 
-    @media (max-width: 300px){
-        height: 7px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin-top: ${alturaJanela * 0.08}px;
 
-    }
+export const Campo = styled.div`
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+gap: 10px;
+width:80%;
 `;
+
 //Título Login
 export const TituloL = styled.div`
     margin-top: 20px;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 2.7rem;
+    font-size: 2.5rem;
     color: gold;
     text-align: center;
+    
 
 @media (max-width: 300px){
     margin-top: 20px;
@@ -70,7 +57,7 @@ export const TituloL = styled.div`
     
 `;
 //Botão Entrar
-export const Botão = styled.button`
+export const Button = styled.button`
   height: 50px;
     width: 200px;
     color: black;
@@ -81,19 +68,12 @@ export const Botão = styled.button`
     margin-top: 0px;
     border-radius: 17px;
     margin: auto;
-    
+   
 
-    @media (max-width: 280px){
+    @media (max-width: 400px){
         height: 35px;
         width: 120px;
-        color: black;
-        background-color: gold;
         font-size: 0.8rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-top: 0px;
-        border-radius: 17px;
-        margin: auto;
     }
 
 `;
@@ -133,10 +113,23 @@ export const Container = styled.span`
   flex-direction: column;
   align-items: center;
   justify-content:space-between;
-  min-height: 100vh;
+  align-self: center;
+  width: 70%;
   text-align: center;
   padding: 0 20px;
 
+  >form{ 
+    min-height: 40vh;
+    width:80%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    
+    
+    justify-content: space-between;
+    align-items: center;
+  }
   @media (max-width:280px) {
  padding:0 10px;
 
@@ -151,3 +144,13 @@ export const HighlightLink = styled.span`
     text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
   }
 `;
+export const Container2 = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding-top: 80px;
+
+`
+
+
+
