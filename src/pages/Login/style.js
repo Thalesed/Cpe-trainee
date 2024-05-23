@@ -28,13 +28,7 @@ export const Input = styled.input`
 
 
 
-export const Campo = styled.div`
-display: flex;
-justify-content: space-between;
-flex-direction: column;
-gap: 10px;
-width:80%;
-`;
+
 
 //Título Login
 export const TituloL = styled.div`
@@ -149,8 +143,23 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 padding-top: 80px;
+`
+export const Carregando = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 100px;
+color: gold;
+
 
 `
 
-
+export const Campo = styled.div`
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+gap: 10px;
+width:80%;
+`;
 
