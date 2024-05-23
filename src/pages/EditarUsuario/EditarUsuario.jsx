@@ -14,7 +14,6 @@ const EditarUsuario = () => {
         <InputBox>
           <InputEditar x='Nome'/>
           <InputEditar x='Cargo'/>
-          <InputEditar x='Status'/>
         </InputBox>
 
         <DivBotao>

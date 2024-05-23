@@ -1,0 +1,127 @@
+import styled from "styled-components"
+
+export var alturaJanela = window.innerHeight;
+
+export const BotaoS = styled.button`
+    height: 50px;
+    width: 250px;
+    color: gold;
+    background-color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0px;
+    border-radius: 17px;
+    margin: 5px 7px;
+    border-color: gold;
+    transition: all 0.6s ease;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.2);
+        background-color: gold;
+        color: black;
+    }
+
+    @media (max-width: 300px){
+        height: 5vb;
+        width: 17vh;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 0px;
+        border-radius: 17px;
+        margin: auto 2px;
+    }
+
+`;
+
+import styled from "styled-components"
+
+export var alturaJanela = window.innerHeight;
+
+export const InputStyle = styled.input`
+    height: 40px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border: solid;
+    border-radius: 27px;
+    margin: 0 auto;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    
+        @media (max-width: 300px){
+            height: 10hv;
+            font-size: 0.7rem;
+        }
+
+`;
+
+export const DivInput = styled.div`
+    height: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: ${alturaJanela * 0.04}px;
+    margin-bottom: ${alturaJanela * 0.04}px;
+
+    @media (max-width: 300px){
+        height: 7px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+
+    }
+    span{
+        margin: 10px auto;
+    }
+`;
+
+
+import styled from "styled-components"
+
+export var alturaJanela = window.innerHeight;
+
+export const InputBox = styled.div`
+    color: gold;
+    height: 180px;
+    max-width: 500px;
+    background-color: rgba(66, 67, 68, 0.562);
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    margin: 10px auto 70px; 
+    border-radius: 9px;
+    border: 2px solid #000000;
+
+    @media (max-width: 300px){
+        height: 3hv;
+        width: 7hv;
+    }
+
+`;
+
+export const DivBotao = styled.div`
+    height: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: ${alturaJanela * 0.08}px;
+
+
+    @media (max-width: 300px){
+        height: 7px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-top: ${alturaJanela * 0.08}px;
+
+    }
+`;
+
+

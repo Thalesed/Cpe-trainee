@@ -5,7 +5,7 @@ const InputEditar = ({x}) => {
     return (
         <>
         <DivInput>
-            {x}:
+            <span>{x}:</span>
             <InputStyle type='text'/>
         </DivInput>
         </>
