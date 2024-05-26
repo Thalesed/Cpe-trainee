@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Table, Space } from "antd";
 
 export const Estrutura = styled.div`
     height: 100%;
@@ -18,8 +19,8 @@ export const Titulo = styled.h1`
 
 `
 export const Input = styled.input`
-   height: 40px;
-   //justify-content: space-between;
+    height: 40px;
+    //justify-content: space-between;
     //width: 80%;
     display: flex;
     align-items: center;
@@ -44,10 +45,13 @@ export const Div1 = styled.div`
     height: 40px;
     justify-content: space-between;
     align-items: center;
+    margin: 30px;
 
 `
-export const Projeto = styled.h2`
-    font-weight: normal; 
-
-
-`
+export const StyledTable = styled(Table)`
+    background-color: white;
+`;
+export const StyledSpace = styled(Space)`
+    background-color: transparent;
+    color: transparent;
+`;
