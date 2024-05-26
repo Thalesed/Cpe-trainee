@@ -14,6 +14,7 @@ export default function Login () {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [carregando, setCarregando ] = useState(false);
+    
     const token = useAuth((state) => state.token);
     const setToken = useAuth((state) => state.setToken);
     const usuario = useAuth((state) => state.usuario);
@@ -28,12 +29,13 @@ export default function Login () {
           setCarregando(true);
           const res = await api.post("/login", { email, senha });
           const { token } = res.data;
+          navigate("/"); //redireciona para página home após o login
 
           setToken(token);
           //console.log( res.data );
         } catch (erro) {
           console.error(erro);
-          alert(erro.menssage);
+          alert("Usuário ou senha incorretos");
         } finally {
           setCarregando(false);
         };
@@ -47,6 +49,8 @@ export default function Login () {
           </h1>
         </Carregando>
       )};
+
+
 
     return (
      <Container2>
