@@ -16,6 +16,7 @@ export const HeaderStyle1 = styled.header`
 `;
 
 export const InputStyle = styled.input`
+    border: ${(props) => (props?.error ? '1px solid red' : '1px solid black')};
     height: 40px;
     width: 50%;
     display: flex;

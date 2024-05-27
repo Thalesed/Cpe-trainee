@@ -7,3 +7,7 @@ Thumbs.db
 
 # Arquivos de build do React
 /build
+
+.env
+.env.development
+.env.production
