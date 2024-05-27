@@ -2,7 +2,7 @@ import React from 'react';
 //import Carrossel from '../components/Carrossel';
 import Tabela from '../../components/tabela/Tabela.jsx'
 import Carrossel from '../../components/carrossel/Carrossel.jsx'
-import { useGetUsuarios } from '../../Hooks/query/Usuarios.js';
+import { useGetUsuarios } from '../../Hooks/query/Tools';
 
 const Home = () => {
   const {data : usuarios} = useGetUsuarios({
@@ -10,7 +10,7 @@ const Home = () => {
       console.log(err);
     },
   });
-  console.log(import.meta.env.BASE_URL);
+  console.log(usuarios);
   return (
     <>
         <Carrossel/>
