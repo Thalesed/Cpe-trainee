@@ -17,7 +17,7 @@ const useAuth = create(
 
     }),
     {
-      name: 'auth', // name of the item in the storage (must be unique)
+      name: 'auth', 
     },
   ),
 )
