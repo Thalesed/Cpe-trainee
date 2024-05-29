@@ -1,84 +1,121 @@
-import React from "react"
+import React from "react";
 
-import TituloLogin from "../../components/titulo/tituloLogin"
+import TituloLogin from "../../components/titulo/tituloLogin";
 
 import { useNavigate } from "react-router-dom";
-import { Container, Container2, HighlightLink, Campo, Input, Button, Carregando } from "./style";
+import {
+  Container,
+  Container2,
+  HighlightLink,
+  Campo,
+  Input,
+  Button,
+  Carregando,
+} from "./style";
 import { useState } from "react";
 
-import api from "../../Services/api";
-import useAuth from "../../stores/auth";
+//import api from "../../Services/api/api";
+//import useAuth from "../../stores/auth";
+import { usePostLogin } from "../../Hooks/query/Login";
+import { QueryClient } from "@tanstack/react-query";
 
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-export default function Login () {
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const [carregando, setCarregando ] = useState(false);
-    
-    const token = useAuth((state) => state.token);
-    const setToken = useAuth((state) => state.setToken);
-    const usuario = useAuth((state) => state.usuario);
-    console.log({ token, usuario });
+  //const [carregando, setCarregando] = useState(false);
 
-    const navigate = useNavigate();
-    const handleSubmit = async (e) => { 
-        e.preventDefault();
-        console.log({email, senha});
+  // const token = useAuth((state) => state.token);
+  // const setToken = useAuth((state) => state.setToken);
+  // const usuario = useAuth((state) => state.usuario);
+  // console.log({ token, usuario });
 
-        try {
-          setCarregando(true);
-          const res = await api.post("/login", { email, senha });
-          const { token } = res.data;
-          navigate("/"); //redireciona para página home após o login
+  const { mutate: postLogin } = usePostLogin({
+    onSuccess: () => {
+      QueryClient.invalidateQueries({
+        queryKey: [],
+      });
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log({ email, senha });
 
-          setToken(token);
-          //console.log( res.data );
-        } catch (erro) {
-          console.error(erro);
-          alert("Usuário ou senha incorretos");
-        } finally {
-          setCarregando(false);
-        };
-     };
+    console.log({ token });
+  };
+  const { token: token } = usePostLogin(
+    { email: email, senha: senha },
+    { onSuccess: () => console.log(token) },
+    { onError: (err) => console.log("AHHHHHHHHHHHHH", err) }
+  );
 
-     if (carregando){
-      return (
-        <Carregando>
-          <h1>
-            Carregando...
-          </h1>
-        </Carregando>
-      )};
+  // try {
+  //   setCarregando(true);
+  //   const res = await api.post("/login", { email, senha });
+  //   const { token } = res.data;
+  //   navigate("/"); //redireciona para página home após o login
 
+  //   setToken(token);
+  //   //console.log( res.data );
+  // } catch (erro) {
+  //   console.error(erro);
+  //   alert("Usuário ou senha incorretos");
+  // } finally {
+  //   setCarregando(false);
+  // }
 
+  // if (carregando) {
+  //   return (
+  //     <Carregando>
+  //       <h1>Carregando...</h1>
+  //     </Carregando>
+  //   );
+  // }
 
-    return (
-     <Container2>
-        <TituloLogin tituloStr="Login"/>
-          
-           <Container>
-             <form onSubmit={handleSubmit}>
-              <Campo>
-                <Input placeholder="Email" type="email" name="email" id= "email" required onChange={(e) => setEmail(e.target.value)}/>
-              </Campo>
-              <Campo>           
-                <Input placeholder="Senha" type="password" name="senha" id="senha" required onChange={(e) => setSenha(e.target.value)}/>
-              </Campo>               
-                 
-            <p>
-            Ainda não tem uma conta? Faça seu cadastro  <HighlightLink className="aquiStyled" onClick= {() => navigate("/cadastro")}>aqui</HighlightLink>       
-            </p>   
+  return (
+    <Container2>
+      <TituloLogin tituloStr="Login" />
 
-               <Button type="submit">Entrar</Button>
-             </form> 
-            
-           </Container>
-        
-         </Container2>
-    
+      <Container>
+        <form onSubmit={handleSubmit}>
+          <Campo>
+            <Input
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Campo>
+          <Campo>
+            <Input
+              placeholder="Senha"
+              type="password"
+              name="senha"
+              id="senha"
+              required
+              onChange={(e) => setSenha(e.target.value)}
+            />
+          </Campo>
 
+          <p>
+            Ainda não tem uma conta? Faça seu cadastro{" "}
+            <HighlightLink
+              className="aquiStyled"
+              onClick={() => navigate("/cadastro")}
+            >
+              aqui
+            </HighlightLink>
+          </p>
 
-
-    )
+          <Button type="submit">Entrar</Button>
+        </form>
+      </Container>
+    </Container2>
+  );
 }
-

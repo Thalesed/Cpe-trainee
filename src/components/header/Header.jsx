@@ -1,14 +1,14 @@
-import React from 'react';
-import logo from './cpe_logo.svg';
+import React from "react";
+import logo from "./cpe_logo.svg";
 
-import { HeaderStyle} from "./style";
+import { HeaderStyle } from "./style";
 
 const Header = () => {
   return (
     <HeaderStyle>
-    <header>
+      <header>
         <img className="cpe-logo" src={logo} alt="logo" />
-    </header>
+      </header>
     </HeaderStyle>
   );
 };
