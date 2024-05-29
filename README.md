@@ -7,7 +7,8 @@ Página de ponto da CPE Jr para o treinee do Grupo 6
 ```npm install```
 
 ## Rodar 
-```npm run dev```
+```npm start```
+ 
 
 # React + Vite
 

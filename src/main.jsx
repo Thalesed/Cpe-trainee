@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import Routes from './routes.jsx';
+import Routes from "./routes.jsx";
 
 const queryClient = new QueryClient ({
 defaultOptions:{

@@ -1,26 +1,24 @@
-import React from 'react';
-import InputEditar from "../../components/InputEditar/InputEditar"
-import TituloEditar from "../../components/titulo/titulo"
-import BotaoEditar from "../../components/BotaoEditar/ButaoEditar"
+import React from "react";
+import InputEditar from "../../components/InputEditar/InputEditar";
+import TituloEditar from "../../components/titulo/titulo";
+import BotaoEditar from "../../components/BotaoEditar/ButaoEditar";
 
-import {DivBotao, InputBox} from './style';
-
-
+import { DivBotao, InputBox } from "./style";
 
 const EditarUsuario = () => {
   return (
     <>
-        <TituloEditar tituloStr="editar"/>
-        <InputBox>
-          <InputEditar x='Nome'/>
-          <InputEditar x='Cargo'/>
-          <InputEditar x='Status'/>
-        </InputBox>
+      <TituloEditar tituloStr="editar" />
+      <InputBox>
+        <InputEditar x="Nome" />
+        <InputEditar x="Cargo" />
+        <InputEditar x="Status" />
+      </InputBox>
 
-        <DivBotao>
-          <BotaoEditar text="cancelar"/>
-          <BotaoEditar text="salvar"/>
-        </DivBotao>
+      <DivBotao>
+        <BotaoEditar text="cancelar" />
+        <BotaoEditar text="salvar" />
+      </DivBotao>
     </>
   );
 };
