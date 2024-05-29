@@ -1,53 +1,60 @@
-import React from "react"
-//import { Table, Space } from "antd";
-import { Titulo, Input, Estrutura, Div1, StyledTable, StyledSpace} from './style';
-
-const columns = [
-    {
-      dataIndex: 'name',
-      key: 'name',
-      
-    },
-    {
-      key: 'action',
-      render: () => (
-        <StyledSpace size="middle" color="black">
-          <a>Edit</a>
-          <a>Delete</a>
-        </StyledSpace>
-      ),
-    },
-  ];
-  const data = [
-    {
-      key: '1',
-      name: 'Projeto 1',
-    },
-    {
-      key: '2',
-      name: 'Projeto 2',
-    },
-    {
-      key: '3',
-      name: 'Projeto 3',
-    },
-  ];
-    
+import React, { useState } from "react";
+import { Titulo, Input, Estrutura, Div1, Div2 } from "./style";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { FaRegEdit } from "react-icons/fa";
+import { BsTrash } from "react-icons/bs";
+import projetos from "./TesteComObjetoEstatico";
 
 const Projetos = () => {
-    return(
-        <Estrutura>
-        <Titulo>gerenciar projetos</Titulo>
-        <form>
+  const [busca, setBusca] = useState("");
+
+  // Função para filtrar projetos
+  function pesquisaTempoReal(busca) {
+    return projetos.filter(function (projeto) {
+      return projeto.name.indexOf(busca) > -1; //verifica se tem o valor pesquisado na busca no campo do nome do projeto
+    });
+  }
+
+  const atualizaBusca = (e) => {
+    setBusca(e.target.value);
+  };
+
+  return (
+    <Estrutura>
+      <Titulo>gerenciar projetos</Titulo>
+      <form>
         <Div1>
-           <Input placeholder="Pesquisar" type="text" name="busca" id= "busca"/> 
-           <h1> 
-            + 
-           </h1>
+          <Input
+            placeholder="Pesquisar"
+            type="text"
+            name="busca"
+            id="busca"
+            value={busca}
+            onChange={atualizaBusca}
+          />
+          <IoAddCircleOutline
+            size={40}
+            cursor="pointer"
+            onClick={() => console.log("clicou")}
+          />
         </Div1>
-        <StyledTable dataSource={data} columns={columns} />
-        </form>
-        </Estrutura>
-    )}
+
+        {pesquisaTempoReal(busca)?.map((projeto) => (
+          <Div2 key={projeto._id}>
+            {projeto.name ? projeto.name : <h1>não encontrado</h1>}
+            <div>
+              <FaRegEdit
+                style={{ marginRight: "10px" }}
+                cursor="pointer"
+                onClick={() => console.log("edita")}
+              />
+              <BsTrash cursor="pointer" onClick={() => console.log("deleta")} />
+            </div>
+          </Div2>
+        ))}
+      </form>
+    </Estrutura>
+  );
+};
 
 export default Projetos;
