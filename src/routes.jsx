@@ -5,7 +5,8 @@ import {
     createRoutesFromElements
 } from "react-router-dom";
 import { AppLayout } from "./components";
-import {Home, Cadastro, Login, EditarUsuario} from "./pages"
+import {Home, Cadastro, Login, EditarUsuario} from "./pages";
+import  Projetos  from "./pages/Projetos/Projetos";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
                 <Route path="cadastro" element={<Cadastro/>}/>
                 <Route path="login" element={<Login/>}/> 
                 <Route path="editar" element={<EditarUsuario/>}/> 
+                <Route path="projetos" element={<Projetos/>}/>
             </Route>
         </Route>
     )

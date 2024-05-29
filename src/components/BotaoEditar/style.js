@@ -35,7 +35,3 @@ export const BotaoS = styled.button`
     }
 
 `;
-
-
-
-

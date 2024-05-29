@@ -13,7 +13,6 @@ const Cadastro = () =>{
         <Input x='Senha'/>
         <Input x='Nome'/>
         <Input x='Cargo'/>
-        <Input x='Status'/>
         <BotaoCadastro/>
        
         </>
