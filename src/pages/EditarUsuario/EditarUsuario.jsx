@@ -8,10 +8,14 @@ import {DivBotao, InputBox} from './style';
 import { useUpdateUsuario, useGetUsuarios } from '../../Hooks/query/Tools';
 import {getUsuarioId} from './utils';
 
+import useAuth from '../../stores/auth';
+
 const EditarUsuario = () => {
   const [nome, setNome] = useState(" ");
   const [cargo, setCargo] = useState(" ");
   const [forms, setForms] = useState({});
+
+  const {userName} = useAuth();
 
   const {data : usuarios} = useGetUsuarios({
     onError: (err) => {
@@ -27,8 +31,14 @@ const EditarUsuario = () => {
 
 
   function sendUpdate(){
-    console.log(getUsuarioId(usuarios, nome));
-    atualizarUsuario({"id":getUsuarioId(usuarios, nome), "usuarioAtualizado":{"cargo":cargo}});
+    console.log(userName);
+    if(getUsuarioId(usuarios, nome) == null){
+        alert("Usuário inesistente");
+    }else if(cargo === " "){
+      alert("Campo cargo vazio");
+    }else{
+      atualizarUsuario({"id":getUsuarioId(usuarios, nome), "usuarioAtualizado":{"cargo":cargo}});
+    }
   }
   
   return (
