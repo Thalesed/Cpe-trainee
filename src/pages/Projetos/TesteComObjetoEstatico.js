@@ -11,7 +11,7 @@ const projetos = [
   },
   {
     _id: "id3",
-    name: "projeto3",
+    name: "vai corinthians!!!",
     description: "Descriçao curta sobre o projeto 2 ",
   },
 ];
