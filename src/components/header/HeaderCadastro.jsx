@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './cpe_logo.svg';
-import logo005 from './cpe_logo005.svg'
-import { alturaJanela, HeaderStyle1 } from '../../pages/Cadastro/style';
-import voltaBotao from '../botão/imagem/desfazer.svg'
-import { Voltar } from '../../pages/Cadastro/style';
+import React from "react";
+import logo from "./cpe_logo.svg";
+import { HeaderStyle1, DivHeader } from "./style";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
-const HeaderCadastro = () => {
+const HeaderVoltar = () => {
+  const navigate = useNavigate();
   return (
     <HeaderStyle1>
-    <header>
-        <img src={logo005} alt="logo" />
-    </header>
+      <DivHeader>
+        <img className="cpe-logo" src={logo} alt="logo" />
+        <RiArrowGoBackFill
+          onClick={() => navigate(-1)} //customizar aqui para onde volta
+          style={{
+            color: "black",
+            display: "flex",
+            scale: "2",
+            cursor: "pointer",
+          }}
+        />
+      </DivHeader>
     </HeaderStyle1>
   );
 };
 
-    //<header>
-    //    <Voltar>
-    //    ←
-    //    </Voltar> 
-    //</header>
-
-export default HeaderCadastro;
+export default HeaderVoltar;
