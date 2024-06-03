@@ -2,6 +2,7 @@ import api from "./api";
 
 export async function getLogin() {
   const { data } = await api.get("/usuarios");
+  console.log("oi", data);
   return data;
 }
 
