@@ -1,33 +1,26 @@
-import React from "react"
-import Input from "../../components/Input/Input"
-import TituloCadastro from "../../components/titulo/titulo"
-import BotaoCadastro from "../../components/botão/botãoCadastro"
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import BotaoVoltarCadastro from "../../components/botão/botaoVoltar"
-//import FundoCadastro from "../../components/fundo/fundoCadastro"
-import api from "../../services/api";
-import { useGetCadastro } from "../../Hooks/query/Tools";
+import React from "react";
+import Input from "../../components/Input/Input";
+import TituloCadastro from "../../components/titulo/titulo";
+import BotaoCadastro from "../../components/botão/botãoCadastro";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { validator } from "./utils";
 
-export default function Cadastro () {
-    const {data: cadastro } = useGetCadastro({
-        onError: (err) => {
-            console.log(err);
-        }
-    })
-    const { handleSubmit, register, formState: {errors}, } = useForm({resolver: zodResolver(validator)});
-    function onSubmit(data){
-        console.log(data);
-    }
-     
-    return(
-        <>
-        <TituloCadastro tituloStr="cadastrar"/>
-        <form onSubmit={handleSubmit(onSubmit)}>
-           
+const Cadastro = () => {
+  const { handleSubmit } = useForm();
+  const onSubmit = () => {};
+
+  return (
+    <>
+      <TituloCadastro tituloStr="cadastrar" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input descrição="E-mail" tipo="email" nome="email" ID="email" />
+        <Input descrição="Nome" tipo="name" nome="nome" ID="nome" />
+        <Input descrição="Senha" tipo="password" nome="senha" ID="senha" />
+        <Input descrição="Cargo" tipo="string" nome="cargo" ID="cargo" />
+        <BotaoCadastro type="submit" />
+      </form>
+    </>
+  );
+};
 
           
                    

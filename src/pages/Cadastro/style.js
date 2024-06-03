@@ -2,17 +2,6 @@ import styled from "styled-components";
 
 export var alturaJanela = window.innerHeight;
 
-export const HeaderStyle1 = styled.header`
-  display: flex;
-  align-items: center;
-  background-color: gold;
-  max-height: 100px;
-
-  @media (max-width: 300px) {
-    max-height: 60px;
-  }
-`;
-
 export const InputStyle = styled.input`
     border: ${(props) => (props?.error ? '1px solid red' : '1px solid black')};
     height: 40px;
@@ -82,6 +71,7 @@ export const Botão = styled.button`
   margin-top: 0px;
   border-radius: 17px;
   margin: auto;
+  cursor: pointer;
 
   @media (max-width: 300px) {
     height: 35px;
