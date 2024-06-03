@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { postLogin, deleteLogin, getLogin } from "../../Services/api/endpoints";
+import { postLogin, deleteLogin, getLogin } from "../../services/api/endpoints";
 
 export function useGetLogin({ onError = (err) => console.log(err) } = {}) {
   return useQuery({

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import BotaoVoltarCadastro from "../../components/botão/botaoVoltar";
 //import FundoCadastro from "../../components/fundo/fundoCadastro"
-import api from "../../services/api";
+
 import { useGetCadastro } from "../../Hooks/query/Tools";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,36 +34,36 @@ export default function Cadastro() {
         <Input
           register={register}
           error={!!errors?.email?.message}
-          x="Email"
-          id="email"
+          descrição="Email"
+          ID="email"
         />
         {errors?.email?.message && <p>{errors?.email?.message}</p>}
         <Input
           register={register}
           error={!!errors?.senha?.message}
-          x="Senha"
-          id="senha"
+          descrição="Senha"
+          ID="senha"
         />
         {errors?.senha?.message && <p>{errors?.senha?.message}</p>}
         <Input
           register={register}
           error={!!errors?.nome?.message}
-          x="Nome"
-          id="nome"
+          descrição="Nome"
+          ID="nome"
         />
         {errors?.nome?.message && <p>{errors?.nome?.message}</p>}
         <Input
           register={register}
           error={!!errors?.cargo?.message}
-          x="Cargo"
-          id="cargo"
+          descrição="Cargo"
+          ID="cargo"
         />
         {errors?.cargo?.message && <p>{errors?.cargo?.message}</p>}
         <Input
           register={register}
           error={!!errors?.status?.message}
-          x="Status"
-          id="status"
+          descrição="Status"
+          ID="status"
         />
         {errors?.status?.message && <p>{errors?.status?.message}</p>}
         <BotaoCadastro type="submit" />

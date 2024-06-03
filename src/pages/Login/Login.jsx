@@ -20,14 +20,14 @@ import {
 import { BiMessageAltError } from "react-icons/bi";
 
 import { usePostLogin } from "../../Hooks/query/Login";
-import { QueryClient } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [erroMensagem, setErroMensagem] = useState(false);
 
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   const { mutate: postLogin } = usePostLogin({
     onSuccess: () => {
       queryClient.invalidateQueries({
