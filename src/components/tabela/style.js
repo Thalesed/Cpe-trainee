@@ -1,7 +1,27 @@
 import styled from "styled-components";
 
+export const Grid = styled.div`
+  max-width:600px;
+  width: 80%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const ButtonLogin = styled.button`
+  background-color: transparent;
+  border: 0.6px solid #555;
+  color: white;
+  cursor: pointer;
+  max-width: 100px;
+  min-height: 30px;
+  left:100%;
+  margin: 0;
+`;
+
 export const TabelaBox = styled.div`
-  width: 80%; 
+  width: 100%; 
   max-width: 600px; 
   margin: 50px auto;
   border-radius: 27px;

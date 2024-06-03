@@ -5,11 +5,10 @@ import Carrossel from '../../components/carrossel/Carrossel.jsx'
 
 const Home = () => {
   return (
-    <>
-        
+    <div className="home">
         <Carrossel/>
         <Tabela />
-    </>
+    </div>
   );
 };
 
