@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getUsuarios } from "../../Services/api/endpoints";
+import { getUsuarios, updateUsuario } from "../../Services/api/endpoints";
 
 export function useGetUsuarios({
   onSuccess = () => {},
