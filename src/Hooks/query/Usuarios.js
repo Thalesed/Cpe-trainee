@@ -6,9 +6,20 @@ export function useGetUsuarios({
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["usuarios"], //f5
-    queryFn: getUsuarios, //função endpoint
+    queryKey: ["usuarios"],
+    queryFn: getUsuarios,
     onSuccess,
     onError,
+  });
+}
+
+export function useUpdateUsuario({
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useMutation({
+      mutationFn: ({ id, usuarioAtualizado }) => updateUsuario(id, usuarioAtualizado),
+      onSuccess,
+      onError,
   });
 }

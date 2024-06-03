@@ -1,11 +1,11 @@
 import React from 'react';
 import { BotaoS} from './style';
 
-const BotaoCadastro = ({text}) => {
+const BotaoCadastro = ({text, handleClick}) => {
     return (
         <>
         
-                <BotaoS>
+                <BotaoS onClick={handleClick}>
                     {text}
                 </BotaoS> 
             
