@@ -14,3 +14,16 @@ export function useGetCadastro({
     onError,
    })
 }
+
+export function useCreateCadastro({
+    onSuccess = () => {},
+    onError = (err) => console.log(err), 
+} = {}) {
+    return useMutation({
+        queryKey:['createCadastro'],
+        MutationFn: createCadastro,
+        onSuccess,
+        onError,
+    })
+}
+
