@@ -1,5 +1,14 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { postLogin } from "../../Services/api/endpoints";
+import { postLogin, deleteLogin, getLogin } from "../../Services/api/endpoints";
+
+export function useGetLogin({ onError = (err) => console.log(err) } = {}) {
+  return useQuery({
+    queryKey: ["login"],
+    queryFn: getLogin,
+    onSuccess,
+    onError,
+  });
+}
 
 export function usePostLogin({
   onSuccess = () => {},
@@ -7,6 +16,17 @@ export function usePostLogin({
 } = {}) {
   return useMutation({
     mutationFn: postLogin,
+    onSuccess,
+    onError,
+  });
+}
+
+export function useDeleteLogin({
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useMutation({
+    mutationFn: deleteLogin,
     onSuccess,
     onError,
   });

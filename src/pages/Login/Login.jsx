@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TituloLogin from "../../components/titulo/tituloLogin";
 
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import {
   Container,
   Container2,
@@ -10,78 +11,55 @@ import {
   Campo,
   Input,
   Button,
-  Carregando,
+  ErrorPopup,
+  ButtonErro,
+  PopupItem,
+  ErroMensagem,
 } from "./style";
-import { useState } from "react";
 
-//import api from "../../Services/api/api";
-//import useAuth from "../../stores/auth";
+import { BiMessageAltError } from "react-icons/bi";
+
 import { usePostLogin } from "../../Hooks/query/Login";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from "react-query";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
-  //const [carregando, setCarregando] = useState(false);
+  const [erroMensagem, setErroMensagem] = useState(false);
 
-  // const token = useAuth((state) => state.token);
-  // const setToken = useAuth((state) => state.setToken);
-  // const usuario = useAuth((state) => state.usuario);
-  // console.log({ token, usuario });
-
+  const queryClient = new QueryClient();
   const { mutate: postLogin } = usePostLogin({
     onSuccess: () => {
-      QueryClient.invalidateQueries({
-        queryKey: [],
+      queryClient.invalidateQueries({
+        queryKey: ["login"],
       });
+      setErroMensagem(false);
+      navigate("/");
     },
     onError: (err) => {
       console.log(err);
+      setErroMensagem(true);
+      //swal.fire("=(", "E-mail ou senha incorretos");
+      //alert("E-mail ou senha incorretos");
     },
   });
-  const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log({ email, senha });
 
-    console.log({ token });
+  const onSubmit = (data) => {
+    postLogin(data);
+    console.log(data);
   };
-  const { token: token } = usePostLogin(
-    { email: email, senha: senha },
-    { onSuccess: () => console.log(token) },
-    { onError: (err) => console.log("AHHHHHHHHHHHHH", err) }
-  );
 
-  // try {
-  //   setCarregando(true);
-  //   const res = await api.post("/login", { email, senha });
-  //   const { token } = res.data;
-  //   navigate("/"); //redireciona para página home após o login
-
-  //   setToken(token);
-  //   //console.log( res.data );
-  // } catch (erro) {
-  //   console.error(erro);
-  //   alert("Usuário ou senha incorretos");
-  // } finally {
-  //   setCarregando(false);
-  // }
-
-  // if (carregando) {
-  //   return (
-  //     <Carregando>
-  //       <h1>Carregando...</h1>
-  //     </Carregando>
-  //   );
-  // }
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
   return (
     <Container2>
-      <TituloLogin tituloStr="Login" />
-
-      <Container>
-        <form onSubmit={handleSubmit}>
+      <Container ErroLogin={erroMensagem}>
+        <TituloLogin tituloStr="Login" />
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Campo>
             <Input
               placeholder="Email"
@@ -89,7 +67,7 @@ export default function Login() {
               name="email"
               id="email"
               required
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email")}
             />
           </Campo>
           <Campo>
@@ -99,10 +77,9 @@ export default function Login() {
               name="senha"
               id="senha"
               required
-              onChange={(e) => setSenha(e.target.value)}
+              {...register("senha")}
             />
           </Campo>
-
           <p>
             Ainda não tem uma conta? Faça seu cadastro{" "}
             <HighlightLink
@@ -116,6 +93,17 @@ export default function Login() {
           <Button type="submit">Entrar</Button>
         </form>
       </Container>
+      <ErrorPopup aberto={erroMensagem}>
+        <PopupItem>
+          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
+        </PopupItem>
+        <PopupItem>
+          <ErroMensagem>E-mail ou senha incorretos</ErroMensagem>
+        </PopupItem>
+        <PopupItem>
+          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
+        </PopupItem>
+      </ErrorPopup>
     </Container2>
   );
 }
