@@ -30,9 +30,11 @@ const Tabela = () => {
               <h3>Membro</h3>
               <h3>Tempo</h3>
             </div>
-            {usuarios?.map((usuario) => (
-              <Usuario usuario={usuario} />
-            ))}
+            <div style={{ padding: "15px" }}>
+              {usuarios?.map((usuario) => (
+                <Usuario usuario={usuario} />
+              ))}
+            </div>
           </div>
         </TabelaBox>
       </Grid>

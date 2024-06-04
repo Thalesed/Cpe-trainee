@@ -10,25 +10,28 @@ import {
   TempoLogado,
   TempoEntrada,
   ContainerT,
+  ContainerD,
 } from "./styles";
 
 export default function Usuario({ usuario }) {
   return (
     <ContainerU>
       <ContainerL>
-        <Nome>{usuario.nome}</Nome>{" "}
-        <Dado2>
-          {" "}
-          Status: <Valor2>{usuario.status}</Valor2>
-        </Dado2>
+        <ContainerD>
+          <Nome>{usuario.nome}</Nome>{" "}
+          <Dado2>
+            {" "}
+            Projeto X <Valor2>{usuario.status}</Valor2>
+          </Dado2>
+        </ContainerD>
         <ContainerT>
-          <TempoEntrada>Oi</TempoEntrada>
+          <TempoEntrada>22:00</TempoEntrada>
           <TempoLogado>5:40</TempoLogado>
         </ContainerT>
       </ContainerL>
       <Dados>
         <Dado>
-          Cargo: <Valor>{usuario.cargo}</Valor>
+          <Valor>{usuario.cargo}</Valor>
         </Dado>
       </Dados>
     </ContainerU>
