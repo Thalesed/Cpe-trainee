@@ -9,13 +9,6 @@ import { Usuario } from "../../components";
 import { useGetUsuarios } from "../../Hooks/query/Usuarios.js";
 
 const Home = () => {
-  console.log(usuarios);
-  if (carregando)
-    return (
-      <ContainerC>
-        <h1>Carregando...</h1>
-      </ContainerC>
-    );
   return (
     <div className="home">
       <Carrossel />
