@@ -9,11 +9,6 @@ import { Usuario } from "../../components";
 import { useGetUsuarios } from "../../Hooks/query/Usuarios.js";
 
 const Home = () => {
-  const { data: usuarios, isLoading: carregando } = useGetUsuarios({
-    onError: (err) => {
-      console.log(err);
-    },
-  });
   console.log(usuarios);
   if (carregando)
     return (
@@ -24,10 +19,7 @@ const Home = () => {
   return (
     <div className="home">
       <Carrossel />
-
-      {usuarios?.map((usuario) => (
-        <Usuario usuario={usuario} />
-      ))}
+      <Tabela />
     </div>
   );
 };
