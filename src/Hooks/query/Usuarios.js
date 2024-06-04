@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getUsuarios } from "../../Services/api/endpoints";
 
 export function useGetUsuarios({
@@ -18,9 +18,8 @@ export function useUpdateUsuario({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-    mutationFn: ({ id, usuarioAtualizado }) =>
-      updateUsuario(id, usuarioAtualizado),
-    onSuccess,
-    onError,
+      mutationFn: ({ id, usuarioAtualizado }) => updateUsuario(id, usuarioAtualizado),
+      onSuccess,
+      onError,
   });
 }

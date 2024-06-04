@@ -1,6 +1,5 @@
 import api from "./api";
 
-//Login
 export async function getLogin() {
   const { data } = await api.get("/usuarios");
   return data;
@@ -12,33 +11,17 @@ export async function postLogin(body) {
 }
 
 export async function deleteLogin(id) {
-  const { data } = await api.delete(`/login/${id}`);
+  const { data } = await api.post(`/login/${id}`);
   return data;
 }
 
-//Usuarios
-export async function getUsuarios() {
-  const { data } = await api.get("/usuarios");
+
+export async function getUsuarios(){
+  const {data} = await api.get('/usuarios');
   return data;
 }
 
-export async function updateUsuario(id, usuarioAtualizado) {
-  const { data } = await api.put(`/usuarios/${id}`, usuarioAtualizado);
-  return data;
-}
-
-//Projetos
-export async function getProjetos() {
-  const { data } = await api.get("/projeto");
-  return data;
-}
-
-export async function deleteProjetos(id) {
-  const { data } = await api.delete(`/projeto/${id}`);
-  return data;
-}
-
-export async function postProjetos(body) {
-  const { data } = await api.post("/projeto", body);
+export async function updateUsuario(id, usuarioAtualizado){
+  const {data} = await api.put(`/usuarios/${id}`, usuarioAtualizado);
   return data;
 }
