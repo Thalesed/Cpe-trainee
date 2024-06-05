@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { DivInput, InputStyle} from './style';
 
-const InputEditar = ({x, handleChange}) => {
+const InputEditar = ({x, handleChange, val}) => {
     const [inputValue, setInputValue] = useState('');
 
     const onChange = (event) => {
+        if(inputValue === ""){
+            setInputValue(val);       
+        }
         const newValue = event.target.value;
         setInputValue(newValue);
         if (handleChange) {
@@ -16,7 +19,7 @@ const InputEditar = ({x, handleChange}) => {
         <>
         <DivInput>
             <span>{x}:</span>
-            <InputStyle type='text' value={inputValue} onChange={onChange} />
+            <InputStyle type='text' value={inputValue} onChange={onChange} placeholder={val} />
         </DivInput>
         </>
     );

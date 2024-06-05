@@ -9,7 +9,7 @@ import {getUsuarioId} from './utils';
 import useAuth from '../../stores/auth';
 
 const EditarUsuario = () => {
-  const [nome, setNome] = useState(" ");
+  const [nome, setNome] = useState(useAuth());
   const [cargo, setCargo] = useState(" ");
   const [forms, setForms] = useState({});
 
@@ -39,6 +39,7 @@ const EditarUsuario = () => {
       atualizarUsuario({"id":getUsuarioId(usuarios, nome), "usuarioAtualizado":{"cargo":cargo}});
     }
   }
+  console.log(useAuth());
 
   return (
     <>

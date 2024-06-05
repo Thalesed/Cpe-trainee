@@ -2,14 +2,36 @@ import React from 'react';
 import {Grid, Rodape, TButton, Titulo, YButton} from './style'
 import Input from '../ModalInput/Input';
 import InputBox from '../ModalInputBox/ModalInputBox';
+import { usePostSessao } from '../../Hooks/query/Sessoes';
 
 const ModalLogin = () => {
+  const { mutate: criarSessao } = usePostSessao({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["sessoes"],
+      });
+      setErroMensagem(false);
+      navigate("/");
+    },
+    onError: (err) => {
+      console.log(err);
+      setErroMensagem(true);
+    },
+  });
+
+  
+
   function hideModal() {
     console.log("teste");
     var elements = document.getElementsByClassName("ModalLogin");
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = 'none';
     }
+  }
+
+  function confirmar(){
+    criarSessao({"id_usuario": "66439200967ccea6fc40f009", "id_projeto": "66453f5848ca1ca72ede85db"});
+    hideModal();
   }
 
   return (
@@ -27,7 +49,7 @@ const ModalLogin = () => {
         <Rodape>
             <TButton onClick={hideModal}>Cancelar</TButton>
 
-            <YButton>Confirmar</YButton>
+            <YButton onClick={confirmar}>Confirmar</YButton>
         </Rodape>
         
     </Grid>

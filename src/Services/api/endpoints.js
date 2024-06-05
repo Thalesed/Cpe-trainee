@@ -42,3 +42,15 @@ export async function postProjetos(body) {
   const { data } = await api.post("/projeto", body);
   return data;
 }
+
+//sessoes
+export async function getSessoes() {
+  const { data } = await api.get("/sessoes");
+  return data;
+}
+
+export async function postSessao(body) {
+  const { data } = await api.post(`/sessoes`, body);
+  return data;
+}
+
