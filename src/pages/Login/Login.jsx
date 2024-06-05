@@ -17,22 +17,40 @@ import {
   ErroMensagem,
 } from "./style";
 
+import {jwtDecode} from 'jwt-decode'
+
 import { BiMessageAltError } from "react-icons/bi";
 
 import { usePostLogin } from "../../Hooks/query/Login";
 import { QueryClient } from "react-query";
+
+import useAuth from "../../stores/auth";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [erroMensagem, setErroMensagem] = useState(false);
 
+  const token = useAuth((state) => state.token);
+  const usuario = useAuth((state) => state.usuario);
+  const setToken = useAuth((state) => state.setToken);
+  const setUsuario = useAuth((state) => state.setUsuario);
+  const clearAuth = useAuth((state) => state.clearAuth);
+
   const queryClient = new QueryClient();
   const { mutate: postLogin } = usePostLogin({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      
+      clearAuth();
+      setToken(data.token);
+      setUsuario(jwtDecode(token));
+
+      console.log(usuario.nome);
+
       queryClient.invalidateQueries({
         queryKey: ["login"],
       });
+
       setErroMensagem(false);
       navigate("/");
     },
@@ -46,7 +64,8 @@ export default function Login() {
 
   const onSubmit = (data) => {
     postLogin(data);
-    console.log(data);
+    postLogin(data);
+    //console.log(data);
   };
 
   const {

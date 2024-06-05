@@ -1,13 +1,17 @@
 import api from "./api";
 
+import useAuth from "../../stores/auth";
+
 //Login
 export async function getLogin() {
   const { data } = await api.get("/usuarios");
+  console.log(data);
   return data;
 }
 
 export async function postLogin(body) {
   const { data } = await api.post("/login", body);
+  console.log(data);
   return data;
 }
 
@@ -19,6 +23,7 @@ export async function deleteLogin(id) {
 //Usuarios
 export async function getUsuarios() {
   const { data } = await api.get("/usuarios");
+  console.log(data);
   return data;
 }
 

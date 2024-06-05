@@ -13,7 +13,7 @@ const useAuth = create(
         set({ token: token, usuario: usuario });
       },
       setUsuario: (usuario) => set({ usuario: usuario }),
-      cleatAuth: () => set({ token: null, usuario: null }),
+      clearAuth: () => set({ token: null, usuario: null }),
 
     }),
     {
