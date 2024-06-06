@@ -1,11 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./style";
-import { TabelaBox, ButtonLogin, Grid } from "./style";
+import { TabelaBox, ButtonLogin, Grid, Titulo } from "./style";
 import ModalLogin from "../ModalLogin/ModalLogin";
-import { Usuario } from "../../components";
-import { useGetUsuarios } from "../../Hooks/query/Usuarios.js";
+import Sessao from "../Sessao/Sessao";
+import { useGetSessoes } from "../../Hooks/query/Sessoes";
+
+import { QueryClient } from "react-query";
 
 const Tabela = () => {
+  const [recarregar, setRecarregar] = useState(false);
+
   function showModal() {
     console.log("teste");
     var elements = document.getElementsByClassName("ModalLogin");
@@ -14,11 +18,26 @@ const Tabela = () => {
       elements[i].style.filter = "none";
     }
   }
-  const { data: usuarios, isLoading: carregando } = useGetUsuarios({
+  const queryClient = new QueryClient();
+  const { data: sessoes, isLoading: carregando, refetch } = useGetSessoes({
     onError: (err) => {
       console.log(err);
     },
   });
+
+  useEffect( () => {
+    const intervalId = setInterval(() => {
+      if(document.getElementsByClassName("ModalLogin")[0].style.display === "block"){ //modal aberto
+        setRecarregar(true);
+      }else{
+        if(recarregar === true){
+          setRecarregar(false);
+        }
+      }
+    }, 1000);
+    return () => clearInterval(intervalId); 
+}, []);
+
   return (
     <>
       <ModalLogin className="modal" />
@@ -26,14 +45,20 @@ const Tabela = () => {
         <ButtonLogin onClick={showModal}>Fazer Login</ButtonLogin>
         <TabelaBox>
           <div className="TabelaBox">
-            <div className="titulo">
+            <Titulo>
               <h3>Membro</h3>
+              <h3>Projeto</h3>
+              <h3>Entrada</h3>
               <h3>Tempo</h3>
-            </div>
+              </Titulo>
             <div style={{ padding: "15px" }}>
-              {usuarios?.map((usuario) => (
-                <Usuario usuario={usuario} />
-              ))}
+            {carregando ? (
+                <p>Carregando...</p>
+              ) : (
+                Array.isArray(sessoes) && sessoes.map((sessao) => (
+                  <Sessao sessao={sessao} />
+                ))
+              )}
             </div>
           </div>
         </TabelaBox>

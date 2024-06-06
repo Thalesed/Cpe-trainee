@@ -15,25 +15,29 @@ export const InputStyle = styled.input`
     font-size: 1rem;
     
         @media (max-width: 300px){
-            height: 30px;
+            height: 10hv;
             font-size: 0.7rem;
         }
 
 `;
 
 export const DivInput = styled.div`
-    height: 10px;
+    height: 20px;
     width: 100%;
     display: flex;
     align-items: center;
-    margin-top: ${alturaJanela * 0.08}px;
+    margin-top: ${alturaJanela * 0.04}px;
+    margin-bottom: ${alturaJanela * 0.04}px;
 
     @media (max-width: 300px){
         height: 7px;
         width: 100%;
         display: flex;
         align-items: center;
-        margin-top: ${alturaJanela * 0.08}px;
+        
 
+    }
+    span{
+        margin: 10px auto;
     }
 `;

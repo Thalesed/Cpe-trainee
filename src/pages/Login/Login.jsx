@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import TituloLogin from "../../components/titulo/tituloLogin";
 
@@ -17,28 +17,59 @@ import {
   ErroMensagem,
 } from "./style";
 
-import { BiMessageAltError } from "react-icons/bi";
+import {jwtDecode} from 'jwt-decode'
+
 
 import { usePostLogin } from "../../Hooks/query/Login";
 import { useQueryClient } from "@tanstack/react-query";
+
+import useAuth from "../../stores/auth";
+
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
 
 export default function Login() {
   const navigate = useNavigate();
 
   const [erroMensagem, setErroMensagem] = useState(false);
+  const [primeira, setPrimeira] = useState(true);
+
+
+  const token = useAuth((state) => state.token);
+  const usuario = useAuth((state) => state.usuario);
+  const setToken = useAuth((state) => state.setToken);
+  const setUsuario = useAuth((state) => state.setUsuario);
+  const clearAuth = useAuth((state) => state.clearAuth);
+
+  useEffect(() => {
+    if(usuario){
+      setErroMensagem("Você já está logado como: " + usuario.nome);
+    }
+  }, []);
+
+  
 
   const queryClient = useQueryClient();
   const { mutate: postLogin } = usePostLogin({
-    onSuccess: () => {
+    onSuccess: (data) => {
+      
+      clearAuth();
+      setToken(data?.token || " ");
+      setUsuario(jwtDecode(token));
+
+      console.log(usuario.nome);
+
       queryClient.invalidateQueries({
         queryKey: ["login"],
       });
+
       setErroMensagem(false);
       navigate("/");
     },
     onError: (err) => {
       console.log(err);
-      setErroMensagem(true);
+      if(!primeira){
+        setErroMensagem(true && !primeira);
+      }
       //swal.fire("=(", "E-mail ou senha incorretos");
       //alert("E-mail ou senha incorretos");
     },
@@ -46,7 +77,9 @@ export default function Login() {
 
   const onSubmit = (data) => {
     postLogin(data);
-    console.log(data);
+    postLogin(data);
+    setPrimeira(false);
+    //console.log(data);
   };
 
   const {
@@ -93,17 +126,7 @@ export default function Login() {
           <Button type="submit">Entrar</Button>
         </form>
       </Container>
-      <ErrorPopup aberto={erroMensagem}>
-        <PopupItem>
-          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
-        </PopupItem>
-        <PopupItem>
-          <ErroMensagem>E-mail ou senha incorretos</ErroMensagem>
-        </PopupItem>
-        <PopupItem>
-          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
-        </PopupItem>
-      </ErrorPopup>
+      <ErroPopUp erroMsg={erroMensagem} hide={() => {setErroMensagem(false); navigate("/");}}/>
     </Container2>
   );
 }
