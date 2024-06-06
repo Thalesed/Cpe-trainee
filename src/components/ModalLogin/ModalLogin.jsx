@@ -1,17 +1,32 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Grid, Rodape, TButton, Titulo, YButton} from './style'
 import Input from '../ModalInput/Input';
 import InputBox from '../ModalInputBox/ModalInputBox';
 import { usePostSessao } from '../../Hooks/query/Sessoes';
 
-import { ErrorPopup, ButtonErro, PopupItem, ErroMensagem } from "./style";
-import { BiMessageAltError } from "react-icons/bi";
+import { QueryClient } from "react-query";
 
 import useAuth from '../../stores/auth';
 
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
+import { useGetProjetos } from '../../Hooks/query/Projetos';
+
+import { useNavigate } from "react-router-dom";
+
 const ModalLogin = () => {
+  const navigate = useNavigate();
+
   const usuario = useAuth((state) => state.usuario);
   const [erroMensagem, setErroMensagem] = useState(false);
+  const [projetosNomes, setProjetosNomes] = useState([]);
+
+  const queryClient = new QueryClient();
+
+  const { data: projetos, isLoading: carregando } = useGetProjetos({
+    onError: (err) => {
+      console.log(err);
+    },
+  });
 
   const { mutate: criarSessao } = usePostSessao({
     onSuccess: () => {
@@ -25,7 +40,6 @@ const ModalLogin = () => {
     onError: (err) => {
       console.log(err);
       setErroMensagem("Você já está logado!");
-      hideModal();
     },
   });
 
@@ -72,17 +86,7 @@ const ModalLogin = () => {
 
             <YButton onClick={confirmar}>Confirmar</YButton>
         </Rodape>
-        <ErrorPopup aberto={erroMensagem}>
-        <PopupItem>
-          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
-        </PopupItem>
-        <PopupItem>
-          <ErroMensagem>{erroMensagem}</ErroMensagem>
-        </PopupItem>
-        <PopupItem>
-          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
-        </PopupItem>
-      </ErrorPopup>
+        <ErroPopUp erroMsg={erroMensagem} hide={() => {setErroMensagem(false); hideModal();}} />
         
     </Grid>
   );

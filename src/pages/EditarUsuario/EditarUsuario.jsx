@@ -8,15 +8,12 @@ import {getUsuarioId} from './utils';
 import { useNavigate } from "react-router-dom";
 import useAuth from '../../stores/auth';
 
-import { ErrorPopup, ButtonErro, PopupItem, ErroMensagem } from "./style";
-import { BiMessageAltError } from "react-icons/bi";
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
 
 import { QueryClient } from "react-query";
 
 const EditarUsuario = () => {
   const navigate = useNavigate();
-
- 
 
   const token = useAuth((state) => state.token);
   const usuario = useAuth((state) => state.usuario);

@@ -51,13 +51,3 @@ export function useUpdateProjetos({
   });
 }
 
-export function useUpdateProjetos({
-  onSuccess = () => {},
-  onError = (err) => console.log(err),
-} = {}) {
-  return useMutation({
-    mutationFn: ({ id, body }) => UpdateProjetos(id, body),
-    onSuccess,
-    onError,
-  });
-}

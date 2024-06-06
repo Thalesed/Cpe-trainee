@@ -63,3 +63,10 @@ export async function postSessao(body) {
   const { data } = await api.post(`/sessoes`, body);
   return data;
 }
+
+
+
+export async function deleteSessao(id) {
+  const { data } = await api.delete(`/sessoes/${id}`);
+  return data;
+}
