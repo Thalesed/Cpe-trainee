@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 import { DivInput, InputStyle} from './style';
 
 const InputEditar = ({x, handleChange, val}) => {
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(val);
 
     const onChange = (event) => {
-        if(inputValue === ""){
-            setInputValue(val);       
-        }
         const newValue = event.target.value;
         setInputValue(newValue);
         if (handleChange) {

@@ -5,11 +5,11 @@ import {
   Estrutura,
   Div1,
   Div2,
-  ErrorPopup,
   PopupItem,
   Mensagem,
   MensagemPrincipal,
   BotaoConfirma,
+  ConfirmaPopup,
 } from "./style";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
@@ -17,12 +17,19 @@ import { FaRegEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { useDeleteProjetos, useGetProjetos } from "../../Hooks/query/Projetos";
+import {
+  useDeleteProjetos,
+  useGetProjetos,
+  useUpdateProjetos,
+} from "../../Hooks/query/Projetos";
+import { EditaProjeto } from "./editaProjeto";
 
 const Projetos = () => {
   const [busca, setBusca] = useState("");
   const [deleta, setDeleta] = useState(false);
   const [idDeleta, setIdDeleta] = useState(null);
+  const [edita, setEdita] = useState(false);
+  const [idEdita, setIdEdita] = useState(null);
 
   const queryClient = useQueryClient();
 
@@ -32,6 +39,7 @@ const Projetos = () => {
     },
   });
   //console.log(projetinho);
+
   // Função para filtrar projetos
   function pesquisaTempoReal(busca) {
     return projetinho?.filter((projeto) => {
@@ -65,6 +73,11 @@ const Projetos = () => {
     //console.log(data);
   };
 
+  function ponte(id) {
+    setIdEdita(id);
+    setEdita(true);
+  }
+
   return (
     <Estrutura>
       <Titulo>gerenciar projetos</Titulo>
@@ -95,7 +108,9 @@ const Projetos = () => {
                 <FaRegEdit
                   style={{ marginRight: "10px" }}
                   cursor="pointer"
-                  onClick={() => console.log("edita")}
+                  onClick={() => {
+                    ponte(projeto?._id);
+                  }}
                 />
                 <BsTrash
                   cursor="pointer"
@@ -107,7 +122,8 @@ const Projetos = () => {
             </Div2>
           ))}
         </tbody>
-        <ErrorPopup aberto={deleta}>
+
+        <ConfirmaPopup aberto={deleta}>
           <PopupItem style={{ marginTop: "0px", position: "relative" }}>
             <PopupItem>
               <IoIosClose
@@ -140,8 +156,9 @@ const Projetos = () => {
               excluir
             </BotaoConfirma>
           </PopupItem>
-        </ErrorPopup>
+        </ConfirmaPopup>
       </form>
+      <EditaProjeto id={idEdita} edita={edita} setEdita={setEdita} />
     </Estrutura>
   );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Grid = styled.div`
-  max-width:600px;
+  max-width:650px;
   width: 80%;
   margin: 50px auto;
   display: flex;
@@ -22,7 +22,7 @@ export const ButtonLogin = styled.button`
 
 export const TabelaBox = styled.div`
   width: 100%; 
-  max-width: 600px; 
+  max-width: 650px; 
   margin: 50px auto;
   border-radius: 27px;
   min-height: 100px;
@@ -33,25 +33,23 @@ export const TabelaBox = styled.div`
   @media (max-width: 768px) {
     width: 90%; 
   }
+`;
+  
 
-  .titulo {
-    color: black;
-    background-color: gold;
-    width: auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px; 
-  }
+export const Titulo = styled.div`
+  color: black;
+  background-color: gold;
+  width: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-content: space-between;
+  padding: 0 20px; 
   @media (max-width: 768px) {
-    .titulo {
         max-height: 50px;
-    } 
   }
-
-
-  .titulo h3 {
+  h3 {
+    width: 25%;
     margin-left: 0;
   }
 `;
-
-

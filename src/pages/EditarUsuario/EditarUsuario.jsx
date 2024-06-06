@@ -8,22 +8,18 @@ import {getUsuarioId} from './utils';
 import { useNavigate } from "react-router-dom";
 import useAuth from '../../stores/auth';
 
-import { ErrorPopup, ButtonErro, PopupItem, ErroMensagem } from "./style";
-import { BiMessageAltError } from "react-icons/bi";
-
-import PopupErro from './PopupErro'
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
 
 import { QueryClient } from "react-query";
 
 const EditarUsuario = () => {
   const navigate = useNavigate();
 
-  const [nome, setNome] = useState(" ");
-  const [cargo, setCargo] = useState(" ");
-  const [forms, setForms] = useState({});
-
   const token = useAuth((state) => state.token);
   const usuario = useAuth((state) => state.usuario);
+
+  const [nome, setNome] = useState(usuario?.nome || " ");
+  const [cargo, setCargo] = useState(" ");
 
   const [erroMensagem, setErroMensagem] = useState(false);
 
@@ -43,13 +39,14 @@ const { mutate: atualizarUsuario } = useUpdateUsuario({
     navigate("/");
   },
   onError: (err) => {
+    setErroMensagem("Não autorizado. Você está logado?");
     console.log(err);
   },
 });
 
 
   function sendUpdate(){
-    if(getUsuarioId(usuarios, nome) == null){
+    if(!usuarios || getUsuarioId(usuarios, nome) == null){
       setErroMensagem("Usuário não encontrado");
     }else if(cargo === " "){
       setErroMensagem("Campo cargo vazio");
@@ -60,30 +57,19 @@ const { mutate: atualizarUsuario } = useUpdateUsuario({
     }
     
   }
-  
 
   return (
     <>
         <TituloEditar tituloStr="editar"/>
         <InputBox>
-          <InputEditar val={usuario.nome} x='Nome' handleChange={(text) => setNome(text)}/>
+          <InputEditar val={usuario?.nome || " "} x='Nome' handleChange={(text) => setNome(text)}/>
           <InputEditar x='Cargo' handleChange={(text) => setCargo(text)}/>
         </InputBox>
         <DivBotao>
           <BotaoEditar text="cancelar"/>
           <BotaoEditar text="salvar" handleClick={sendUpdate}/>
         </DivBotao>
-        <ErrorPopup aberto={erroMensagem}>
-        <PopupItem>
-          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
-        </PopupItem>
-        <PopupItem>
-          <ErroMensagem>{erroMensagem}</ErroMensagem>
-        </PopupItem>
-        <PopupItem>
-          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
-        </PopupItem>
-      </ErrorPopup>
+        <ErroPopUp erroMsg={erroMensagem} hide={() => setErroMensagem(false)} />
     </>
   );
 };

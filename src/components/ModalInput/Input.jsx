@@ -6,7 +6,7 @@ const Input = ({text, placeH, opcoes}) => {
     <InputDiv>
     <div className="text">{text}</div>
     <select required>
-        <option value="" disabled hidden>{placeH}</option>
+        <option value="" disabled selected hidden>{placeH}</option>
         {opcoes && opcoes.map((opcao, index) => (
           <option key={index} value={index}>{opcao}</option>
         ))}
