@@ -68,7 +68,7 @@ export const Div2 = styled.tr`
     font-size: 1rem;
   }
 `;
-export const ErrorPopup = styled.div`
+export const ConfirmaPopup = styled.div`
   position: fixed;
   width: 300px;
   height: 200px;
@@ -97,6 +97,7 @@ export const PopupItem = styled.div`
   align-items: center;
 `;
 export const MensagemPrincipal = styled.h1`
+  text-shadow: black;
   margin-top: 20px;
   font-size: 1.25rem;
 
@@ -138,5 +139,64 @@ export const BotaoConfirma = styled.button`
     width: 75px;
     height: 25px;
     font-size: 0.7rem;
+  }
+`;
+
+export const InputsStyle = styled.div`
+  height: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
+`;
+
+export const InputPopup = styled.input`
+  height: 20px;
+  line-height: 70px;
+  display: flex;
+  border: solid, 1px;
+  border-color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.75rem;
+  text-align: initial;
+  text-align: left;
+  padding-left: 5px;
+
+  @media (max-width: 350px) {
+  }
+`;
+
+export const EditaPopup = styled.div`
+  position: fixed;
+  width: 300px;
+  height: 340px;
+  background-color: white;
+  color: black;
+  border: 5px solid white;
+  border-radius: 18px;
+  display: ${(props) => (props.aberto ? "block" : "none")};
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 350px) {
+    width: 250px;
+    height: 300px;
+  }
+`;
+
+export const MensagemInput = styled.div`
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  margin-top: 20px;
+  font-size: 1rem;
+  background-color: white;
+
+  @media (max-width: 350px) {
+    font-size: 1rem;
+    margin-top: 20px;
   }
 `;
