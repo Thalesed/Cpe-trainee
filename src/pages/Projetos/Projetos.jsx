@@ -15,14 +15,15 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { IoIosClose } from "react-icons/io";
 import { FaRegEdit } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
-import { useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import {
   useDeleteProjetos,
   useGetProjetos,
   useUpdateProjetos,
 } from "../../Hooks/query/Projetos";
-import { EditaProjeto } from "./editaProjeto";
+import { EditaProjeto } from "./EditaProjeto/editaProjeto";
+import { CriaProjeto } from "./CriaProjeto/criaProjeto";
 
 const Projetos = () => {
   const [busca, setBusca] = useState("");
@@ -30,6 +31,7 @@ const Projetos = () => {
   const [idDeleta, setIdDeleta] = useState(null);
   const [edita, setEdita] = useState(false);
   const [idEdita, setIdEdita] = useState(null);
+  const [cria, setCria] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -95,7 +97,7 @@ const Projetos = () => {
             type="submit"
             size={40}
             cursor="pointer"
-            onClick={() => console.log("clicou")}
+            onClick={() => setCria(true)}
           />
         </Div1>
         <tbody style={{ overflow: "auto", maxHeight: "200px" }}>
@@ -159,6 +161,7 @@ const Projetos = () => {
         </ConfirmaPopup>
       </form>
       <EditaProjeto id={idEdita} edita={edita} setEdita={setEdita} />
+      <CriaProjeto cria={cria} setCria={setCria} />
     </Estrutura>
   );
 };

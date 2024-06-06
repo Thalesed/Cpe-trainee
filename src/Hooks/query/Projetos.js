@@ -34,7 +34,7 @@ export function usePostProjetos({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-    mutationFn: postProjetos,
+    mutationFn: ({ body }) => postProjetos(body),
     onSuccess,
     onError,
   });
