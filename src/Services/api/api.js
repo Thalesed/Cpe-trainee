@@ -4,12 +4,6 @@ const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 console.log(BASE_URL);
 const api = axios.create({ baseURL: BASE_URL });
 
-import useAuthStore from "../../stores/auth";
-
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
-
-const api = axios.create({ baseURL: BASE_URL });
-
 api.interceptors.request.use(
   (req) => {
     const { token } = useAuthStore.getState();
@@ -19,7 +13,7 @@ api.interceptors.request.use(
     if (!req.headers.Authorization && token) {
       req.headers.Authorization = `Bearer e3c801147e4109c5888facde13fb01acf00e35724cf0fd97068981ab347df39244b1aa9e029e74fc8c02759bb33f3cd4`;
     }
-    if(usuario){
+    if (usuario) {
       req.headers.usuarioid = usuario._id;
       console.log(">>>>", usuario);
     }
@@ -29,4 +23,3 @@ api.interceptors.request.use(
 );
 
 export default api;
-

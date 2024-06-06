@@ -4,7 +4,7 @@ import {
   deleteProjetos,
   postProjetos,
   UpdateProjetos,
-} from "../../Services/api/endpoints";
+} from "../../services/api/endpoints";
 
 export function useGetProjetos({
   onSuccess = () => {},
@@ -50,4 +50,3 @@ export function useUpdateProjetos({
     onError,
   });
 }
-

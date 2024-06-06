@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./style";
 import { TabelaBox, ButtonLogin, Grid, Titulo } from "./style";
 import ModalLogin from "../ModalLogin/ModalLogin";
@@ -11,7 +11,7 @@ const Tabela = () => {
   const [recarregar, setRecarregar] = useState(false);
 
   function showModal() {
-    console.log("teste");
+    console.log("função ShowModal");
     var elements = document.getElementsByClassName("ModalLogin");
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "block";
@@ -19,24 +19,32 @@ const Tabela = () => {
     }
   }
   const queryClient = new QueryClient();
-  const { data: sessoes, isLoading: carregando, refetch } = useGetSessoes({
+  const {
+    data: sessoes,
+    isLoading: carregando,
+    refetch,
+  } = useGetSessoes({
     onError: (err) => {
       console.log(err);
     },
   });
 
-  useEffect( () => {
+  useEffect(() => {
     const intervalId = setInterval(() => {
-      if(document.getElementsByClassName("ModalLogin")[0].style.display === "block"){ //modal aberto
+      if (
+        document.getElementsByClassName("ModalLogin")[0].style.display ===
+        "block"
+      ) {
+        //modal aberto
         setRecarregar(true);
-      }else{
-        if(recarregar === true){
+      } else {
+        if (recarregar === true) {
           setRecarregar(false);
         }
       }
     }, 1000);
-    return () => clearInterval(intervalId); 
-}, []);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <>
@@ -50,14 +58,13 @@ const Tabela = () => {
               <h3>Projeto</h3>
               <h3>Entrada</h3>
               <h3>Tempo</h3>
-              </Titulo>
+            </Titulo>
             <div style={{ padding: "15px" }}>
-            {carregando ? (
+              {carregando ? (
                 <p>Carregando...</p>
               ) : (
-                Array.isArray(sessoes) && sessoes.map((sessao) => (
-                  <Sessao sessao={sessao} />
-                ))
+                Array.isArray(sessoes) &&
+                sessoes.map((sessao) => <Sessao sessao={sessao} />)
               )}
             </div>
           </div>

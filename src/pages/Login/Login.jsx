@@ -17,8 +17,7 @@ import {
   ErroMensagem,
 } from "./style";
 
-import {jwtDecode} from 'jwt-decode'
-
+import { jwtDecode } from "jwt-decode";
 
 import { usePostLogin } from "../../Hooks/query/Login";
 import { useQueryClient } from "@tanstack/react-query";
@@ -33,7 +32,6 @@ export default function Login() {
   const [erroMensagem, setErroMensagem] = useState(false);
   const [primeira, setPrimeira] = useState(true);
 
-
   const token = useAuth((state) => state.token);
   const usuario = useAuth((state) => state.usuario);
   const setToken = useAuth((state) => state.setToken);
@@ -41,17 +39,14 @@ export default function Login() {
   const clearAuth = useAuth((state) => state.clearAuth);
 
   useEffect(() => {
-    if(usuario){
+    if (usuario) {
       setErroMensagem("Você já está logado como: " + usuario.nome);
     }
   }, []);
 
-  
-
   const queryClient = useQueryClient();
   const { mutate: postLogin } = usePostLogin({
     onSuccess: (data) => {
-      
       clearAuth();
       setToken(data?.token || " ");
       setUsuario(jwtDecode(token));
@@ -67,9 +62,10 @@ export default function Login() {
     },
     onError: (err) => {
       console.log(err);
-      if(!primeira){
-        setErroMensagem(true && !primeira);
-      }
+      // if(!primeira){
+      //   setErroMensagem(true && !primeira);
+      // }
+
       //swal.fire("=(", "E-mail ou senha incorretos");
       //alert("E-mail ou senha incorretos");
     },
@@ -77,7 +73,7 @@ export default function Login() {
 
   const onSubmit = (data) => {
     postLogin(data);
-    postLogin(data);
+
     setPrimeira(false);
     //console.log(data);
   };
@@ -126,7 +122,13 @@ export default function Login() {
           <Button type="submit">Entrar</Button>
         </form>
       </Container>
-      <ErroPopUp erroMsg={erroMensagem} hide={() => {setErroMensagem(false); navigate("/");}}/>
+      <ErroPopUp
+        erroMsg={erroMensagem}
+        hide={() => {
+          setErroMensagem(false);
+          navigate("/");
+        }}
+      />
     </Container2>
   );
 }

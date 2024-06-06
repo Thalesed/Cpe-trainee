@@ -1,5 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getSessoes, postSessao, deleteSessao } from "../../Services/api/endpoints";
+import {
+  getSessoes,
+  postSessao,
+  deleteSessao,
+} from "../../services/api/endpoints";
 
 export function useGetSessoes({
   onSuccess = () => {},
@@ -18,9 +22,9 @@ export function usePostSessao({
   onError = (err) => console.log(err),
 } = {}) {
   return useMutation({
-      mutationFn: postSessao,
-      onSuccess,
-      onError,
+    mutationFn: postSessao,
+    onSuccess,
+    onError,
   });
 }
 
@@ -34,4 +38,3 @@ export function useDeleteSessao({
     onError,
   });
 }
-
