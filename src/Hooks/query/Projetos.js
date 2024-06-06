@@ -1,8 +1,9 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import {
   getProjetos,
   deleteProjetos,
   postProjetos,
+  UpdateProjetos,
 } from "../../Services/api/endpoints";
 
 export function useGetProjetos({
@@ -34,6 +35,17 @@ export function usePostProjetos({
 } = {}) {
   return useMutation({
     mutationFn: postProjetos,
+    onSuccess,
+    onError,
+  });
+}
+
+export function useUpdateProjetos({
+  onSuccess = () => {},
+  onError = (err) => console.log(err),
+} = {}) {
+  return useMutation({
+    mutationFn: ({ id, body }) => UpdateProjetos(id, body),
     onSuccess,
     onError,
   });
