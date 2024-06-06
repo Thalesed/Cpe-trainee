@@ -19,7 +19,8 @@ const ModalLogin = () => {
         queryKey: ["sessoes"],
       });
       setErroMensagem(false);
-      navigate("/");
+      hideModal();
+      window.location.reload();
     },
     onError: (err) => {
       console.log(err);
@@ -28,7 +29,14 @@ const ModalLogin = () => {
     },
   });
 
-  
+  useEffect( () => {
+    const nomes = [];
+    for (let i = 0; i < projetos?.length; i++) {
+      nomes.push(projetos[i]?.nome);
+    }
+    setProjetosNomes(nomes);
+    console.log(projetosNomes);
+  }, []);
 
   function hideModal() {
     console.log("teste");
@@ -36,6 +44,7 @@ const ModalLogin = () => {
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = 'none';
     }
+    navigate("/");
   }
 
   function confirmar(){
@@ -54,7 +63,7 @@ const ModalLogin = () => {
 
         <Input text="* O que você pretende fazer nesse horário?" placeH="Selecione a tarefa" opcoes={["Outros", "Tarefas/Operacional", "Equipes Paralelas", "Reunião"]}></Input>
 
-        <Input text="Você vai trabalhar em algum projeto específico?" placeH="Você vai trabalhar em algum projeto?" opcoes={["Ponto", "Violão mágico", "Diversos", "Projeto Novo"]}></Input>
+        <Input text="Você vai trabalhar em algum projeto específico?" placeH="Você vai trabalhar em algum projeto?" opcoes={projetosNomes}></Input>
 
         <InputBox text="Deseja descrever melhor o que irá fazer?" placeH="Descrição da atividade exercida"/>
 

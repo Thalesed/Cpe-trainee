@@ -49,7 +49,7 @@ const { mutate: atualizarUsuario } = useUpdateUsuario({
 
 
   function sendUpdate(){
-    if(getUsuarioId(usuarios, nome) == null){
+    if(!usuarios || getUsuarioId(usuarios, nome) == null){
       setErroMensagem("Usuário não encontrado");
     }else if(cargo === " "){
       setErroMensagem("Campo cargo vazio");
@@ -72,17 +72,7 @@ const { mutate: atualizarUsuario } = useUpdateUsuario({
           <BotaoEditar text="cancelar"/>
           <BotaoEditar text="salvar" handleClick={sendUpdate}/>
         </DivBotao>
-        <ErrorPopup aberto={erroMensagem}>
-        <PopupItem>
-          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
-        </PopupItem>
-        <PopupItem>
-          <ErroMensagem>{erroMensagem}</ErroMensagem>
-        </PopupItem>
-        <PopupItem>
-          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
-        </PopupItem>
-      </ErrorPopup>
+        <ErroPopUp erroMsg={erroMensagem} hide={() => setErroMensagem(false)} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import TituloLogin from "../../components/titulo/tituloLogin";
 
@@ -19,12 +19,13 @@ import {
 
 import {jwtDecode} from 'jwt-decode'
 
-import { BiMessageAltError } from "react-icons/bi";
 
 import { usePostLogin } from "../../Hooks/query/Login";
 import { QueryClient } from "react-query";
 
 import useAuth from "../../stores/auth";
+
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -38,6 +39,14 @@ export default function Login() {
   const setToken = useAuth((state) => state.setToken);
   const setUsuario = useAuth((state) => state.setUsuario);
   const clearAuth = useAuth((state) => state.clearAuth);
+
+  useEffect(() => {
+    if(usuario){
+      setErroMensagem("Você já está logado como: " + usuario.nome);
+    }
+  }, []);
+
+  
 
   const queryClient = new QueryClient();
   const { mutate: postLogin } = usePostLogin({
@@ -117,17 +126,7 @@ export default function Login() {
           <Button type="submit">Entrar</Button>
         </form>
       </Container>
-      <ErrorPopup aberto={erroMensagem}>
-        <PopupItem>
-          <BiMessageAltError style={{ scale: "4", marginTop: "40px" }} />
-        </PopupItem>
-        <PopupItem>
-          <ErroMensagem>E-mail ou senha incorretos</ErroMensagem>
-        </PopupItem>
-        <PopupItem>
-          <ButtonErro onClick={() => setErroMensagem(false)}>Fechar</ButtonErro>
-        </PopupItem>
-      </ErrorPopup>
+      <ErroPopUp erroMsg={erroMensagem} hide={() => {setErroMensagem(false); navigate("/");}}/>
     </Container2>
   );
 }
