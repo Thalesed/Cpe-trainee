@@ -13,12 +13,12 @@ import {
   InputsStyle,
   EditaPopup,
   MensagemInput,
-} from "./style";
+} from "../style";
 import { act, useState } from "react";
-import { useUpdateProjetos } from "../../Hooks/query/Projetos";
 import { IoIosClose } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useUpdateProjetos } from "../../../Hooks/query/Projetos";
 
 export function EditaProjeto({ id, edita, setEdita }) {
   const queryClient = useQueryClient();
