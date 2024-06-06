@@ -43,14 +43,13 @@ const ModalLogin = () => {
     },
   });
 
-  useEffect( () => {
-    const nomes = [];
-    for (let i = 0; i < projetos?.length; i++) {
-      nomes.push(projetos[i]?.nome);
-    }
-    setProjetosNomes(nomes);
-    console.log(projetosNomes);
-  }, []);
+  function carregarNomesProjetos(){
+    projetosNomes.length = 0;
+      for (let i = 0; i < projetos?.length; i++) {
+        projetosNomes.push(projetos[i]?.nome);
+      }
+      console.log(projetosNomes);
+  }
 
   function hideModal() {
     console.log("teste");
@@ -58,6 +57,7 @@ const ModalLogin = () => {
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = 'none';
     }
+    onDelete();
     navigate("/");
   }
 
@@ -72,12 +72,18 @@ const ModalLogin = () => {
   return (
     <Grid className='ModalLogin'>
         <Titulo><text>Confirmação de Login</text></Titulo>
+        {carregarNomesProjetos()}
 
         <Input text="* Como deseja logar?" placeH={"Presencial/Remoto"} opcoes={["Presencial", "Remoto"]}></Input>
 
         <Input text="* O que você pretende fazer nesse horário?" placeH="Selecione a tarefa" opcoes={["Outros", "Tarefas/Operacional", "Equipes Paralelas", "Reunião"]}></Input>
 
-        <Input text="Você vai trabalhar em algum projeto específico?" placeH="Você vai trabalhar em algum projeto?" opcoes={projetosNomes}></Input>
+        {carregando ? (
+          <p>Carregando</p>
+        
+        ) : (
+          <Input text="Você vai trabalhar em algum projeto específico?" placeH="Você vai trabalhar em algum projeto?" opcoes={projetosNomes}></Input>
+        )}
 
         <InputBox text="Deseja descrever melhor o que irá fazer?" placeH="Descrição da atividade exercida"/>
 

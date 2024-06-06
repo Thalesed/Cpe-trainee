@@ -92,10 +92,10 @@ export default function Sessao({ sessao }) {
         <>
         <ContainerU>
             <ContainerD>
-                <Nome>{sessao.id_usuario.nome}</Nome>
+                <Nome>{sessao.id_usuario?.nome}</Nome>
             </ContainerD>
             <ContainerL>
-                <Valor>{sessao.id_projeto.nome}</Valor>
+                <Valor>{sessao.id_projeto?.nome}</Valor>
             </ContainerL>
             <ContainerT>
                 <Tempo>{extractTime(sessao.createdAt)}</Tempo>
