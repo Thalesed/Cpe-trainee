@@ -46,7 +46,8 @@ const { mutate: atualizarUsuario } = useUpdateUsuario({
 
 
   function sendUpdate(){
-    if(!usuarios || getUsuarioId(usuarios, nome) == null){
+    
+    if(!usuarios || !getUsuarioId(usuarios, nome)){
       setErroMensagem("Usuário não encontrado");
     }else if(cargo === " "){
       setErroMensagem("Campo cargo vazio");
