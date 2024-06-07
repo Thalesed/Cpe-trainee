@@ -3,6 +3,7 @@ import styled from "styled-components"
 export var alturaJanela = window.innerHeight;
 
 export const ErrorPopup = styled.div`
+  z-index: 99999;
   position: fixed;
   width: 300px;
   height: 200px;

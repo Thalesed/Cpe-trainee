@@ -7,9 +7,12 @@ import { useGetSessoes } from "../../Hooks/query/Sessoes";
 
 import { QueryClient } from "react-query";
 
+import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
+
 const Tabela = () => {
   const [recarregar, setRecarregar] = useState(false);
   const [arraySessoes, setArraySessoes] = useState([]);
+  const [erroMensagem, setErroMensagem] = useState(false);
 
   function showModal() {
     console.log("teste");
@@ -23,6 +26,7 @@ const Tabela = () => {
   const { data: sessoes, isLoading: carregando } = useGetSessoes({
     onError: (err) => {
       console.log(err);
+      setErroMensagem("Servidor indisponivel");
     },
   });
 
@@ -49,7 +53,9 @@ const Tabela = () => {
               )}
             </div>
           </div>
+          
         </TabelaBox>
+        <ErroPopUp erroMsg={erroMensagem} hide={() => {setErroMensagem(false);}}/>
       </Grid>
     </>
   );
