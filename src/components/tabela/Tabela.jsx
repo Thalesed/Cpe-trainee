@@ -19,13 +19,13 @@ const Tabela = () => {
       elements[i].style.filter = "none";
     }
   }
+
   const queryClient = new QueryClient();
   const {
     data: sessoes,
     isLoading: carregando,
     refetch,
   } = useGetSessoes({
-  const { data: sessoes, isLoading: carregando } = useGetSessoes({
     onError: (err) => {
       console.log(err);
     },
