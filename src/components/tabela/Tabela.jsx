@@ -9,6 +9,7 @@ import { QueryClient } from "react-query";
 
 const Tabela = () => {
   const [recarregar, setRecarregar] = useState(false);
+  const [arraySessoes, setArraySessoes] = useState([]);
 
   function showModal() {
     console.log("teste");
@@ -19,24 +20,11 @@ const Tabela = () => {
     }
   }
   const queryClient = new QueryClient();
-  const { data: sessoes, isLoading: carregando, refetch } = useGetSessoes({
+  const { data: sessoes, isLoading: carregando } = useGetSessoes({
     onError: (err) => {
       console.log(err);
     },
   });
-
-  useEffect( () => {
-    const intervalId = setInterval(() => {
-      if(document.getElementsByClassName("ModalLogin")[0].style.display === "block"){ //modal aberto
-        setRecarregar(true);
-      }else{
-        if(recarregar === true){
-          setRecarregar(false);
-        }
-      }
-    }, 1000);
-    return () => clearInterval(intervalId); 
-}, []);
 
   return (
     <>

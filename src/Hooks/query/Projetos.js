@@ -11,7 +11,7 @@ export function useGetProjetos({
   onError = (err) => console.log(err),
 } = {}) {
   return useQuery({
-    queryKey: ["projetos"],
+    queryKey: ["projeto"],
     queryFn: getProjetos,
     onSuccess,
     onError,
