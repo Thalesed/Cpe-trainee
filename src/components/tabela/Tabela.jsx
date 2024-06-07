@@ -26,14 +26,6 @@ const Tabela = () => {
     },
   });
 
-  function carregarSessoes(){
-    arraySessoes.length = 0;
-      for (let i = 0; i < sessoes?.length; i++) {
-        arraySessoes.push(sessoes[i]);
-      }
-      console.log(arraySessoes);
-  }
-
   return (
     <>
       <ModalLogin className="modal" />
