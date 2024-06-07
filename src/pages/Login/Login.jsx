@@ -67,7 +67,7 @@ export default function Login() {
     },
     onError: (err) => {
       console.log(err);
-      if(!{primeira}){
+      if({primeira}){
         setErroMensagem("Usuario ou email inexistentes");
       }
       //swal.fire("=(", "E-mail ou senha incorretos");
