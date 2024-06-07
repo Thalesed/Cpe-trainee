@@ -48,7 +48,6 @@ const ModalLogin = () => {
       for (let i = 0; i < projetos?.length; i++) {
         projetosNomes.push(projetos[i]?.nome);
       }
-      console.log(projetosNomes);
   }
 
   function hideModal() {
@@ -57,7 +56,6 @@ const ModalLogin = () => {
     for (var i = 0; i < elements.length; i++) {
         elements[i].style.display = 'none';
     }
-    onDelete();
     navigate("/");
   }
 
