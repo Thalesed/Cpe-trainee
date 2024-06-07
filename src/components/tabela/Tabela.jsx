@@ -15,7 +15,6 @@ const Tabela = () => {
   const [erroMensagem, setErroMensagem] = useState(false);
 
   function showModal() {
-    console.log("teste");
     var elements = document.getElementsByClassName("ModalLogin");
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "block";

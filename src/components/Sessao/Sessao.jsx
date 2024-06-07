@@ -46,7 +46,6 @@ export default function Sessao({ sessao }) {
       });
 
     function encerrarSessao(){
-        console.log(usuarios);
         deletarSessao(sessao.id_usuario._id);
         
     }

@@ -31,11 +31,17 @@ export const HeaderStyle1 = styled.header`
     width: 140px;
     height: 140px;
     padding: 5px auto;
+    cursor: pointer;
   }
 
   a {
-    text-align: right;
-    margin: 0 auto;
+    text-decoration: none; 
+    color: inherit; 
+    background: none; 
+    padding: 0; 
+    margin: 0; 
+    border: none; 
+    outline: none; 
   }
 `;
 

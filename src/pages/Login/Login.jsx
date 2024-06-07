@@ -56,8 +56,6 @@ export default function Login() {
       setToken(data?.token || " ");
       setUsuario(jwtDecode(token));
 
-      console.log(usuario.nome);
-
       queryClient.invalidateQueries({
         queryKey: ["login"],
       });
@@ -79,7 +77,6 @@ export default function Login() {
     postLogin(data);
     postLogin(data);
     setPrimeira(false);
-    //console.log(data);
   };
 
   const {
@@ -118,6 +115,7 @@ export default function Login() {
             <HighlightLink
               className="aquiStyled"
               onClick={() => navigate("/cadastro")}
+              href="/cadastro"
             >
               aqui
             </HighlightLink>
