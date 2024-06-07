@@ -62,10 +62,9 @@ export default function Login() {
     },
     onError: (err) => {
       console.log(err);
-      // if(!primeira){
-      //   setErroMensagem(true && !primeira);
-      // }
-
+      if({primeira}){
+        setErroMensagem("Usuario ou email inexistentes");
+      }
       //swal.fire("=(", "E-mail ou senha incorretos");
       //alert("E-mail ou senha incorretos");
     },
@@ -73,8 +72,8 @@ export default function Login() {
 
   const onSubmit = (data) => {
     postLogin(data);
-
     setPrimeira(false);
+    postLogin(data);
     //console.log(data);
   };
 

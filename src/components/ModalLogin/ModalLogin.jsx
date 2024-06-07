@@ -9,6 +9,8 @@ import ErroPopUp from "../../components/ErroPopUp/ErroPopUp";
 import { useGetProjetos } from "../../Hooks/query/Projetos";
 import { useNavigate } from "react-router-dom";
 
+import {getProjetoId} from './utils'
+
 const ModalLogin = () => {
   const navigate = useNavigate();
 
@@ -59,11 +61,8 @@ const ModalLogin = () => {
   function confirmar() {
     if (!usuario || !usuario._id) {
       setErroMensagem("Usuário não encontrado. Você está logado?");
-    } else {
-      criarSessao({
-        id_usuario: usuario._id,
-        id_projeto: "66453f5848ca1ca72ede85db",
-      });
+    }else{
+      criarSessao({"id_usuario": usuario?._id, "id_projeto": getProjetoId(projetos, projetosNomes[projetoSel()])});
     }
   }
 
@@ -90,15 +89,12 @@ const ModalLogin = () => {
         ]}
       ></Input>
 
-      {carregando ? (
-        <p>Carregando</p>
-      ) : (
-        <Input
-          text="Você vai trabalhar em algum projeto específico?"
-          placeH="Você vai trabalhar em algum projeto?"
-          opcoes={projetosNomes}
-        ></Input>
-      )}
+        {carregando ? (
+          <p>Carregando</p>
+        
+        ) : (
+          <Input text="Você vai trabalhar em algum projeto específico?" placeH="Você vai trabalhar em algum projeto?" opcoes={projetosNomes} idSelect="selectProjetos"></Input>
+        )}
 
       <InputBox
         text="Deseja descrever melhor o que irá fazer?"
