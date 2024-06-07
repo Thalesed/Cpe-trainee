@@ -7,13 +7,13 @@ import { useState } from "react";
 import BotaoVoltarCadastro from "../../components/botão/botaoVoltar";
 //import FundoCadastro from "../../components/fundo/fundoCadastro"
 
-import { useGetCadastro } from "../../Hooks/query/Tools";
+import { useCreateCadastro, useGetCadastro } from "../../Hooks/query/Tools";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { validator } from "./utils";
 
 export default function Cadastro() {
-  const { data: cadastro } = useGetCadastro({
+  const { data: cadastro } = useCreateCadastro({
     onError: (err) => {
       console.log(err);
     },
@@ -23,9 +23,7 @@ export default function Cadastro() {
     register,
     formState: { errors },
   } = useForm({ resolver: zodResolver(validator) });
-  function onSubmit(data) {
-    console.log(data);
-  }
+  function onSubmit(data) {}
 
   return (
     <>

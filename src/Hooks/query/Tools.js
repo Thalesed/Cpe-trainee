@@ -19,7 +19,7 @@ export function useCreateCadastro({
 } = {}) {
   return useMutation({
     queryKey: ["createCadastro"],
-    MutationFn: createCadastro,
+    MutationFn: useCreateCadastro,
     onSuccess,
     onError,
   });
