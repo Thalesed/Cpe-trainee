@@ -9,7 +9,7 @@ const HeaderVoltar = () => {
   return (
     <HeaderStyle1>
       <DivHeader>
-        <img className="cpe-logo" src={logo} alt="logo" onClick={navigate("/")}/>
+        <a href="/"><img  className="cpe-logo" src={logo} alt="logo" onClick={navigate("/")}/></a>
         <RiArrowGoBackFill
           onClick={() => navigate(-1)} //customizar aqui para onde volta
           style={{

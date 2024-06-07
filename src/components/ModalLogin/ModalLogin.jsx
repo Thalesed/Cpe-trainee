@@ -51,7 +51,6 @@ const ModalLogin = () => {
   }, [projetos]);
 
   function hideModal() {
-    console.log("Função hideModal");
     var elements = document.getElementsByClassName("ModalLogin");
     for (var i = 0; i < elements.length; i++) {
       elements[i].style.display = "none";

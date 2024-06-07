@@ -128,7 +128,7 @@ export const Container = styled.span`
     padding: 0 10px;
   }
 `;
-export const HighlightLink = styled.span`
+export const HighlightLink = styled.a`
   color: yellow; /* Destaca a palavra "aqui" em amarelo */
   cursor: pointer; /* Muda o cursor para indicar que é clicável */
   text-decoration: none; /* Remove o sublinhado padrão */
