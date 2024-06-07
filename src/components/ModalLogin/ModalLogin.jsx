@@ -17,6 +17,7 @@ const ModalLogin = () => {
   const usuario = useAuth((state) => state.usuario);
   const [erroMensagem, setErroMensagem] = useState(false);
   const [projetosNomes, setProjetosNomes] = useState([]);
+  const [projetoSelecionado, setProjetoSelecionado] = useState("");
 
   const queryClient = new QueryClient();
 
@@ -37,7 +38,7 @@ const ModalLogin = () => {
     },
     onError: (err) => {
       console.log(err);
-      setErroMensagem("Você já está logado!");
+      setErroMensagem("Erro ao iniciar sessão");
     },
   });
 
@@ -58,11 +59,29 @@ const ModalLogin = () => {
     navigate("/");
   }
 
-  function confirmar() {
-    if (!usuario || !usuario._id) {
+
+  function projetoSel() {
+    
+    const selectProjetos = document.getElementById('selectProjetos');
+    const valor = selectProjetos?.value;
+    return valor;
+  }
+
+  function confirmar(){
+    const selectModo = document.getElementById('modo');
+    const selectTarefa = document.getElementById('tarefa');
+    if(!selectModo.value || !selectTarefa.value){
+      setErroMensagem("Campos obrigatorios vazios");
+      return null;
+    }
+    if(!usuario?._id){
       setErroMensagem("Usuário não encontrado. Você está logado?");
     }else{
-      criarSessao({"id_usuario": usuario?._id, "id_projeto": getProjetoId(projetos, projetosNomes[projetoSel()])});
+      if(projetoSel()){
+        criarSessao({"id_usuario": usuario?._id, "id_projeto": getProjetoId(projetos, projetosNomes[projetoSel()])});
+      }else{
+        criarSessao({"id_usuario": usuario?._id});
+      }
     }
   }
 
@@ -72,22 +91,9 @@ const ModalLogin = () => {
         <text>Confirmação de Login</text>
       </Titulo>
 
-      <Input
-        text="* Como deseja logar?"
-        placeH={"Presencial/Remoto"}
-        opcoes={["Presencial", "Remoto"]}
-      ></Input>
+        <Input idSelect="modo" text="* Como deseja logar?" placeH={"Presencial/Remoto"} opcoes={["Presencial", "Remoto"]}></Input>
 
-      <Input
-        text="* O que você pretende fazer nesse horário?"
-        placeH="Selecione a tarefa"
-        opcoes={[
-          "Outros",
-          "Tarefas/Operacional",
-          "Equipes Paralelas",
-          "Reunião",
-        ]}
-      ></Input>
+        <Input idSelect="tarefa" text="* O que você pretende fazer nesse horário?" placeH="Selecione a tarefa" opcoes={["Outros", "Tarefas/Operacional", "Equipes Paralelas", "Reunião"]}></Input>
 
         {carregando ? (
           <p>Carregando</p>
